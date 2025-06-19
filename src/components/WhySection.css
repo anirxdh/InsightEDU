@@ -1,0 +1,38 @@
+.why-section {
+  background: rgba(24, 28, 40, 0.96);
+  margin: 2.5rem auto 0 auto;
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+  max-width: 1000px;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 16px 0 #23263a;
+  border-left: 8px solid #6ec1ff;
+}
+.why-section h2 {
+  font-family: 'ICA Rubrik', 'Poppins', sans-serif;
+  font-size: 2.2rem;
+  color: #6ec1ff;
+  margin-bottom: 1.2rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #6ec1ff88;
+}
+.why-content {
+  font-size: 1.15rem;
+  color: #e6eaff;
+  line-height: 1.7;
+  font-family: 'Poppins', sans-serif;
+}
+.why-content b {
+  color: #6ec1ff;
+}
+@media (max-width: 700px) {
+  .why-section {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    border-left: 4px solid #6ec1ff;
+  }
+  .why-section h2 {
+    font-size: 1.3rem;
+  }
+  .why-content {
+    font-size: 1rem;
+  }
+} 

@@ -1,0 +1,26 @@
+.main-header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background: rgba(16, 19, 26, 0.98);
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.25);
+  z-index: 100;
+  border-bottom: 1.5px solid #23263a;
+}
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.logo {
+  font-family: 'ICA Rubrik', 'Poppins', sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #e6eaff;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px #6ec1ff, 0 2px 8px #23263a;
+  filter: drop-shadow(0 0 6px #6ec1ff88);
+} 
