@@ -13,7 +13,7 @@
   padding: 1.2rem 2rem;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 .logo {
   font-family: 'ICA Rubrik', 'Poppins', sans-serif;
@@ -23,4 +23,20 @@
   letter-spacing: 2px;
   text-shadow: 0 0 8px #6ec1ff, 0 2px 8px #23263a;
   filter: drop-shadow(0 0 6px #6ec1ff88);
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+.nav-links a {
+  color: #e6eaff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.3em 1em;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-links a:hover {
+  background: #23263a;
+  color: #6ec1ff;
 } 

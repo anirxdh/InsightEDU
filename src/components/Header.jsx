@@ -1,11 +1,15 @@
 import React from 'react';
 import './Header.css';
 
-const Header = () => (
+const Header = ({ scrollToSection }) => (
   <header className="main-header">
     <div className="header-content">
       <span className="logo">EDUDATA</span>
-      {/* Add nav links if needed */}
+      <nav className="nav-links">
+        <button className="nav-btn" onClick={() => scrollToSection('home')}>Home</button>
+        <button className="nav-btn" onClick={() => scrollToSection('about')}>About</button>
+        <button className="nav-btn" onClick={() => scrollToSection('contact')}>Contact</button>
+      </nav>
     </div>
   </header>
 );
