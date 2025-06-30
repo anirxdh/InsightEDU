@@ -7,6 +7,7 @@
     text-align: center;
     overflow: hidden;
     position: relative;
+    background: transparent;
 }
 
 .banner .slider {
@@ -93,8 +94,9 @@
     font-family: 'ICA Rubrik', sans-serif;
     font-size: 16em;
     line-height: 1em;
-    color: #25283B;
+    color: #fff;
     position: relative;
+    text-shadow: 0 0 8px #000, 0 2px 8px #000;
 }
 
 .banner .content h1::after {
@@ -102,7 +104,7 @@
     inset: 0 0 0 0;
     content: attr(data-content);
     z-index: 2;
-    -webkit-text-stroke: 2px #d2d2d2;
+    -webkit-text-stroke: 2px #fff;
     color: transparent;
 }
 
@@ -112,9 +114,12 @@
     max-width: 200px;
 }
 
-.banner .content h2 {
+.banner .content .author h2 {
     font-size: 3em;
-    color: #25283B;
+    color: #fff;
+    font-family: 'General Sans', sans-serif;
+    font-weight: 700;
+    text-shadow: 0 0 8px #000, 0 2px 8px #000;
 }
 
 @media screen and (max-width: 1023px) {

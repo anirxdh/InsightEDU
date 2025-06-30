@@ -1,33 +1,37 @@
 .why-section {
-  background: rgba(24, 28, 40, 0.96);
+  background: #18181b;
   margin: 2.5rem auto 0 auto;
   padding: 2.5rem 1.5rem 2rem 1.5rem;
   max-width: 1000px;
   border-radius: 1.5rem;
-  box-shadow: 0 2px 16px 0 #23263a;
-  border-left: 8px solid #6ec1ff;
+  box-shadow: 0 2px 16px 0 #23263a44;
+  border: 1.5px solid #23263a;
 }
 .why-section h2 {
-  font-family: 'ICA Rubrik', 'Poppins', sans-serif;
+  font-family: 'General Sans', 'Poppins', sans-serif;
   font-size: 2.2rem;
-  color: #6ec1ff;
+  font-weight: 700;
+  background: linear-gradient(90deg, #BEC1CF 60%, #D5D8EA 60%, #D5D8EA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
   margin-bottom: 1.2rem;
   letter-spacing: 1px;
-  text-shadow: 0 0 8px #6ec1ff88;
 }
 .why-content {
   font-size: 1.15rem;
-  color: #e6eaff;
+  color: #fff;
   line-height: 1.7;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'General Sans', sans-serif;
 }
 .why-content b {
-  color: #6ec1ff;
+  color: #D5D8EA;
 }
 @media (max-width: 700px) {
   .why-section {
     padding: 1.2rem 0.5rem 1rem 0.5rem;
-    border-left: 4px solid #6ec1ff;
+    border-radius: 1rem;
   }
   .why-section h2 {
     font-size: 1.3rem;
