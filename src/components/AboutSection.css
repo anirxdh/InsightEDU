@@ -1,7 +1,7 @@
 .about-section {
   background: #18181b;
   margin: 0 auto;
-  padding: 3rem 1rem 2rem 1rem;
+  padding: 3rem 2rem 2rem 2rem;
   max-width: 1200px;
   border-radius: 2rem;
   box-shadow: 0 4px 32px 0 #23263a44;
@@ -78,6 +78,8 @@
     align-items: center;
   }
   .about-section {
-    padding: 2rem 0.5rem 1.5rem 0.5rem;
+    padding: 2rem 1rem 1.5rem 1rem;
+    border-radius: 1.5rem;
+    margin: 1.5rem 0.5rem 0.5rem 0.5rem;
   }
 } 
