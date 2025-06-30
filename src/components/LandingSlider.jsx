@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LandingSlider.css';
 
@@ -17,6 +17,20 @@ const LandingSlider = () => {
   const [rotation, setRotation] = useState(0);
   const quantity = cardData.length;
   const angle = 360 / quantity;
+  const intervalRef = useRef();
+
+  // On mount, animate a full carousel cycle (right rotation N times)
+  useEffect(() => {
+    let count = 0;
+    intervalRef.current = setInterval(() => {
+      setRotation((prev) => prev - angle);
+      count++;
+      if (count >= quantity) {
+        clearInterval(intervalRef.current);
+      }
+    }, 20);
+    return () => clearInterval(intervalRef.current);
+  }, [angle, quantity]);
 
   const handleCardClick = (route) => {
     navigate(route);
