@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from
 import React from 'react'
 import Header from './components/Header'
 import AboutSection from './components/AboutSection'
-import WhySection from './components/WhySection'
+import GoalSection from './components/GoalSection'
 import LandingSlider from './components/LandingSlider'
 import ContactSection from './components/ContactSection'
 import Plot from 'react-plotly.js'
@@ -165,8 +165,10 @@ function AppContent() {
         </section>
         {location.pathname === '/' && (
           <>
+            <section id="goal">
+              <GoalSection />
+            </section>
             <section id="about">
-              <WhySection />
               <AboutSection />
             </section>
             <ContactSection />
