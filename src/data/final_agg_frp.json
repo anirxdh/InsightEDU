@@ -1,0 +1,740 @@
+{
+  "Chronic Absenteeism": {
+    "0": [
+      {
+        "Category": "F",
+        "Count": "302067",
+        "Percent": 0.776
+      },
+      {
+        "Category": "H",
+        "Count": "128",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "72217",
+        "Percent": 0.186
+      },
+      {
+        "Category": "S",
+        "Count": "14822",
+        "Percent": 0.038
+      }
+    ],
+    "1": [
+      {
+        "Category": "F",
+        "Count": "294578",
+        "Percent": 0.803
+      },
+      {
+        "Category": "H",
+        "Count": "194",
+        "Percent": 0.001
+      },
+      {
+        "Category": "R",
+        "Count": "59487",
+        "Percent": 0.162
+      },
+      {
+        "Category": "S",
+        "Count": "12604",
+        "Percent": 0.034
+      }
+    ]
+  },
+  "Gender": {
+    "F": [
+      {
+        "Category": "F",
+        "Count": "277022",
+        "Percent": 0.793
+      },
+      {
+        "Category": "H",
+        "Count": "106",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "60459",
+        "Percent": 0.173
+      },
+      {
+        "Category": "S",
+        "Count": "11548",
+        "Percent": 0.033
+      }
+    ],
+    "M": [
+      {
+        "Category": "F",
+        "Count": "329936",
+        "Percent": 0.786
+      },
+      {
+        "Category": "H",
+        "Count": "216",
+        "Percent": 0.001
+      },
+      {
+        "Category": "R",
+        "Count": "72995",
+        "Percent": 0.174
+      },
+      {
+        "Category": "S",
+        "Count": "16406",
+        "Percent": 0.039
+      }
+    ]
+  },
+  "Grade group": {
+    "Elementary": [
+      {
+        "Category": "F",
+        "Count": "72689",
+        "Percent": 0.815
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "13228",
+        "Percent": 0.148
+      },
+      {
+        "Category": "S",
+        "Count": "3294",
+        "Percent": 0.037
+      }
+    ],
+    "Highschool": [
+      {
+        "Category": "F",
+        "Count": "393736",
+        "Percent": 0.782
+      },
+      {
+        "Category": "H",
+        "Count": "300",
+        "Percent": 0.001
+      },
+      {
+        "Category": "R",
+        "Count": "91771",
+        "Percent": 0.182
+      },
+      {
+        "Category": "S",
+        "Count": "17558",
+        "Percent": 0.035
+      }
+    ],
+    "Secondary": [
+      {
+        "Category": "F",
+        "Count": "137173",
+        "Percent": 0.798
+      },
+      {
+        "Category": "H",
+        "Count": "22",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "28069",
+        "Percent": 0.163
+      },
+      {
+        "Category": "S",
+        "Count": "6737",
+        "Percent": 0.039
+      }
+    ],
+    "Unknown": [
+      {
+        "Category": "F",
+        "Count": "3360",
+        "Percent": 0.817
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "386",
+        "Percent": 0.094
+      },
+      {
+        "Category": "S",
+        "Count": "365",
+        "Percent": 0.089
+      }
+    ]
+  },
+  "Overall": [
+    {
+      "Category": "F",
+      "Count": "621488",
+      "Percent": 0.788
+    },
+    {
+      "Category": "R",
+      "Count": "136706",
+      "Percent": 0.173
+    },
+    {
+      "Category": "S",
+      "Count": "29812",
+      "Percent": 0.038
+    },
+    {
+      "Category": "H",
+      "Count": "323",
+      "Percent": 0.0
+    }
+  ],
+  "Race": {
+    "1": [
+      {
+        "Category": "F",
+        "Count": "188504",
+        "Percent": 0.758
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "52450",
+        "Percent": 0.211
+      },
+      {
+        "Category": "S",
+        "Count": "7746",
+        "Percent": 0.031
+      }
+    ],
+    "2": [
+      {
+        "Category": "F",
+        "Count": "565",
+        "Percent": 0.574
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "413",
+        "Percent": 0.42
+      },
+      {
+        "Category": "S",
+        "Count": "small count",
+        "Percent": 0.006
+      }
+    ],
+    "3": [
+      {
+        "Category": "F",
+        "Count": "40703",
+        "Percent": 0.834
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "6944",
+        "Percent": 0.142
+      },
+      {
+        "Category": "S",
+        "Count": "1138",
+        "Percent": 0.023
+      }
+    ],
+    "4": [
+      {
+        "Category": "F",
+        "Count": "268890",
+        "Percent": 0.86
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "35960",
+        "Percent": 0.115
+      },
+      {
+        "Category": "S",
+        "Count": "7731",
+        "Percent": 0.025
+      }
+    ],
+    "5": [
+      {
+        "Category": "F",
+        "Count": "493",
+        "Percent": 0.838
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "71",
+        "Percent": 0.121
+      },
+      {
+        "Category": "S",
+        "Count": "24",
+        "Percent": 0.041
+      }
+    ],
+    "6": [
+      {
+        "Category": "F",
+        "Count": "65712",
+        "Percent": 0.655
+      },
+      {
+        "Category": "H",
+        "Count": "318",
+        "Percent": 0.003
+      },
+      {
+        "Category": "R",
+        "Count": "25755",
+        "Percent": 0.257
+      },
+      {
+        "Category": "S",
+        "Count": "8465",
+        "Percent": 0.084
+      }
+    ],
+    "7": [
+      {
+        "Category": "F",
+        "Count": "42091",
+        "Percent": 0.741
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "11861",
+        "Percent": 0.209
+      },
+      {
+        "Category": "S",
+        "Count": "2844",
+        "Percent": 0.05
+      }
+    ]
+  },
+  "School Number": {
+    "1": [
+      {
+        "Category": "F",
+        "Count": "22877",
+        "Percent": 0.79
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "4882",
+        "Percent": 0.169
+      },
+      {
+        "Category": "S",
+        "Count": "1193",
+        "Percent": 0.041
+      }
+    ],
+    "12": [
+      {
+        "Category": "F",
+        "Count": "313586",
+        "Percent": 0.783
+      },
+      {
+        "Category": "H",
+        "Count": "274",
+        "Percent": 0.001
+      },
+      {
+        "Category": "R",
+        "Count": "73264",
+        "Percent": 0.183
+      },
+      {
+        "Category": "S",
+        "Count": "13502",
+        "Percent": 0.034
+      }
+    ],
+    "13": [
+      {
+        "Category": "F",
+        "Count": "111136",
+        "Percent": 0.776
+      },
+      {
+        "Category": "H",
+        "Count": "44",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "26627",
+        "Percent": 0.186
+      },
+      {
+        "Category": "S",
+        "Count": "5349",
+        "Percent": 0.037
+      }
+    ],
+    "14": [
+      {
+        "Category": "F",
+        "Count": "74331",
+        "Percent": 0.804
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "14220",
+        "Percent": 0.154
+      },
+      {
+        "Category": "S",
+        "Count": "3953",
+        "Percent": 0.043
+      }
+    ],
+    "2": [
+      {
+        "Category": "F",
+        "Count": "10564",
+        "Percent": 0.836
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "1279",
+        "Percent": 0.101
+      },
+      {
+        "Category": "S",
+        "Count": "791",
+        "Percent": 0.063
+      }
+    ],
+    "28": [
+      {
+        "Category": "F",
+        "Count": "1012",
+        "Percent": 0.713
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "361",
+        "Percent": 0.254
+      },
+      {
+        "Category": "S",
+        "Count": "46",
+        "Percent": 0.032
+      }
+    ],
+    "41": [
+      {
+        "Category": "F",
+        "Count": "98",
+        "Percent": 0.838
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "small count",
+        "Percent": 0.077
+      },
+      {
+        "Category": "S",
+        "Count": "10",
+        "Percent": 0.085
+      }
+    ],
+    "42": [
+      {
+        "Category": "F",
+        "Count": "427",
+        "Percent": 0.758
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "111",
+        "Percent": 0.197
+      },
+      {
+        "Category": "S",
+        "Count": "25",
+        "Percent": 0.044
+      }
+    ],
+    "5": [
+      {
+        "Category": "F",
+        "Count": "22826",
+        "Percent": 0.839
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "3616",
+        "Percent": 0.133
+      },
+      {
+        "Category": "S",
+        "Count": "758",
+        "Percent": 0.028
+      }
+    ],
+    "6": [
+      {
+        "Category": "F",
+        "Count": "17263",
+        "Percent": 0.798
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "3705",
+        "Percent": 0.171
+      },
+      {
+        "Category": "S",
+        "Count": "662",
+        "Percent": 0.031
+      }
+    ],
+    "7": [
+      {
+        "Category": "F",
+        "Count": "26942",
+        "Percent": 0.822
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "4604",
+        "Percent": 0.141
+      },
+      {
+        "Category": "S",
+        "Count": "1214",
+        "Percent": 0.037
+      }
+    ],
+    "8": [
+      {
+        "Category": "F",
+        "Count": "5896",
+        "Percent": 0.828
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "776",
+        "Percent": 0.109
+      },
+      {
+        "Category": "S",
+        "Count": "451",
+        "Percent": 0.063
+      }
+    ]
+  },
+  "Year": {
+    "2019-20": [
+      {
+        "Category": "F",
+        "Count": "240602",
+        "Percent": 0.785
+      },
+      {
+        "Category": "H",
+        "Count": "115",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "54391",
+        "Percent": 0.178
+      },
+      {
+        "Category": "S",
+        "Count": "11228",
+        "Percent": 0.037
+      }
+    ],
+    "2020-21": [
+      {
+        "Category": "F",
+        "Count": "204941",
+        "Percent": 0.79
+      },
+      {
+        "Category": "H",
+        "Count": "108",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "44698",
+        "Percent": 0.172
+      },
+      {
+        "Category": "S",
+        "Count": "9529",
+        "Percent": 0.037
+      }
+    ],
+    "2021-22": [
+      {
+        "Category": "F",
+        "Count": "164846",
+        "Percent": 0.791
+      },
+      {
+        "Category": "H",
+        "Count": "100",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "35119",
+        "Percent": 0.169
+      },
+      {
+        "Category": "S",
+        "Count": "8242",
+        "Percent": 0.04
+      }
+    ],
+    "2022-23": [
+      {
+        "Category": "F",
+        "Count": "5530",
+        "Percent": 0.765
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "1250",
+        "Percent": 0.173
+      },
+      {
+        "Category": "S",
+        "Count": "451",
+        "Percent": 0.062
+      }
+    ],
+    "2023-24": [
+      {
+        "Category": "F",
+        "Count": "5569",
+        "Percent": 0.776
+      },
+      {
+        "Category": "H",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "R",
+        "Count": "1248",
+        "Percent": 0.174
+      },
+      {
+        "Category": "S",
+        "Count": "362",
+        "Percent": 0.05
+      }
+    ]
+  }
+}

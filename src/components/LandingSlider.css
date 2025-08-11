@@ -96,7 +96,7 @@
 
 .banner .content h1 {
     font-family: 'ICA Rubrik', sans-serif;
-    font-size: 16em;
+    font-size: 11em; /* +25% */
     line-height: 1em;
     color: #fff;
     position: relative;
@@ -139,7 +139,7 @@
         text-align: center;
         width: 100%;
         text-shadow: 0 10px 20px #000;
-        font-size: 7em;
+        font-size: 8.75em; /* +25% */
     }
     
     .banner .content .author {
@@ -168,7 +168,7 @@
     }
     
     .banner .content h1 {
-        font-size: 3em;
+        font-size: 3.75em; /* +25% */
         margin-top: 0.5em;
     }
     

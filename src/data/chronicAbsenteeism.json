@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "note": "Chronic absenteeism percentage data by different categories",
+    "value_label": "percent",
+    "count_label": "count",
+    "colors": {
+      "highlight": "#f97316"
+    }
+  },
+  "overall": { "count": 10620, "percent": 0.296 },
+  "gender": [
+    { "label": "F", "count": 17276, "percent": 0.287 },
+    { "label": "M", "count": 18554, "percent": 0.305 }
+  ],
+  "race": [
+    { "label": "1", "count": 3907, "percent": 0.401 },
+    { "label": "2", "count": 106, "percent": 0.566 },
+    { "label": "3", "count": 1654, "percent": 0.252 },
+    { "label": "4", "count": 9100, "percent": 0.411 },
+    { "label": "5", "count": 45, "percent": 0.489 },
+    { "label": "6", "count": 17695, "percent": 0.211 },
+    { "label": "7", "count": 3318, "percent": 0.325 }
+  ],
+  "grade_group": [
+    { "label": "Elementary", "count": 15636, "percent": 0.229 },
+    { "label": "Highschool", "count": 11306, "percent": 0.395 },
+    { "label": "Secondary", "count": 7867, "percent": 0.287 }
+  ],
+  "school_id": [
+    { "label": "1", "count": 2656, "percent": 0.326 },
+    { "label": "2", "count": 2292, "percent": 0.141 },
+    { "label": "5", "count": 2279, "percent": 0.271 },
+    { "label": "6", "count": 2922, "percent": 0.292 },
+    { "label": "7", "count": 2338, "percent": 0.327 },
+    { "label": "8", "count": 4375, "percent": 0.157 },
+    { "label": "12", "count": 8565, "percent": 0.407 },
+    { "label": "13", "count": 4748, "percent": 0.305 },
+    { "label": "14", "count": 3208, "percent": 0.281 }
+  ],
+  "trend": [
+    { "label": "2019-20", "count": 7284, "percent": 0.308 },
+    { "label": "2020-21", "count": 6699, "percent": 0.185 },
+    { "label": "2021-22", "count": 7342, "percent": 0.377 },
+    { "label": "2022-23", "count": 7174, "percent": 0.306 },
+    { "label": "2023-24", "count": 7331, "percent": 0.297 }
+  ]
+}
+
+

@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import './LandingSlider.css';
 
 const cardData = [
-  { id: 1, title: 'Attendance', image: '/images/attendance.jpg', route: '/attendance' },
-  { id: 2, title: 'Behaviour', image: '/images/behaviour.jpg', route: '/behaviour' },
-  { id: 3, title: 'Demographics', image: '/images/demographics.jpg', route: '/demographics' },
-  { id: 4, title: 'FRP', image: '/images/frp.jpg', route: '/frp' },
-  { id: 5, title: 'GPA', image: '/images/gpa.jpg', route: '/gpa' },
-  { id: 6, title: 'Graduation', image: '/images/graduation.jpg', route: '/graduation' },
-  { id: 7, title: 'Staff', image: '/images/staff.jpg', route: '/staff' },
+  { id: 1, title: 'Grad', image: '/images/graduation.jpg', route: '/graduation' },
+  { id: 2, title: 'Race', image: '/images/demographics.jpg', route: '/demographics' },
+  { id: 3, title: 'FRP', image: '/images/frp.jpg', route: '/frp' },
+  { id: 4, title: 'GPA', image: '/images/gpa.jpg', route: '/gpa' },
+  { id: 5, title: 'Chronic', image: '/images/attendance.jpg', route: '/attendance' },
+  { id: 6, title: 'Staff', image: '/images/staff.jpg', route: '/staff' },
 ];
 
 const LandingSlider = () => {
@@ -35,6 +34,13 @@ const LandingSlider = () => {
   const handleCardClick = (route) => {
     navigate(route);
   };
+
+  // Determine which card is currently at the front based on rotation
+  const activeIndex = (() => {
+    const steps = Math.round(-rotation / angle);
+    const idx = ((steps % quantity) + quantity) % quantity;
+    return idx;
+  })();
 
   const rotateLeft = () => {
     setRotation((prev) => prev + angle);
@@ -67,7 +73,9 @@ const LandingSlider = () => {
       </div>
       <button className="carousel-arrow right" onClick={rotateRight} aria-label="Scroll Right">&#8594;</button>
       <div className="content">
-        <h1 data-content="EDUDATA">EDUDATA</h1>
+        <h1 data-content={cardData[activeIndex].title}>
+          {cardData[activeIndex].title}
+        </h1>
         <div className="author">
           <h2>Select a Dashboard</h2>
         </div>

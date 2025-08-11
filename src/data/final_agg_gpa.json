@@ -1,0 +1,454 @@
+{
+  "Chronically Absent": {
+    "0": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "992",
+        "Percent": 0.041
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "7882",
+        "Percent": 0.322
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "15576",
+        "Percent": 0.637
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      }
+    ],
+    "1": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "5061",
+        "Percent": 0.196
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "13540",
+        "Percent": 0.524
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "7148",
+        "Percent": 0.277
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "88",
+        "Percent": 0.003
+      }
+    ]
+  },
+  "Gender": {
+    "F": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "1468",
+        "Percent": 0.063
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "9072",
+        "Percent": 0.39
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "12667",
+        "Percent": 0.545
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "50",
+        "Percent": 0.002
+      }
+    ],
+    "M": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "4585",
+        "Percent": 0.17
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "12350",
+        "Percent": 0.457
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "10057",
+        "Percent": 0.372
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "40",
+        "Percent": 0.001
+      }
+    ]
+  },
+  "Grade": {
+    "10": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "1649",
+        "Percent": 0.089
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "7710",
+        "Percent": 0.415
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "9135",
+        "Percent": 0.492
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "69",
+        "Percent": 0.004
+      }
+    ],
+    "11": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "2350",
+        "Percent": 0.138
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "7211",
+        "Percent": 0.422
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "7496",
+        "Percent": 0.439
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "18",
+        "Percent": 0.001
+      }
+    ],
+    "12": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "2242",
+        "Percent": 0.144
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "6721",
+        "Percent": 0.433
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "6568",
+        "Percent": 0.423
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      }
+    ]
+  },
+  "Overall": {
+    "All": [
+      {
+        "Category": "4-3 gpa",
+        "Count": "23199",
+        "Percent": 0.453
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "21642",
+        "Percent": 0.423
+      },
+      {
+        "Category": "2-1 gpa",
+        "Count": "6241",
+        "Percent": 0.122
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "93",
+        "Percent": 0.002
+      }
+    ]
+  },
+  "Race": {
+    "1": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "2329",
+        "Percent": 0.177
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "6251",
+        "Percent": 0.475
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "4577",
+        "Percent": 0.348
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      }
+    ],
+    "2": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "53",
+        "Percent": 0.596
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "36",
+        "Percent": 0.404
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      }
+    ],
+    "3": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "89",
+        "Percent": 0.028
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "1150",
+        "Percent": 0.359
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "1961",
+        "Percent": 0.613
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      }
+    ],
+    "4": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "2633",
+        "Percent": 0.144
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "8414",
+        "Percent": 0.461
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "7126",
+        "Percent": 0.391
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "69",
+        "Percent": 0.004
+      }
+    ],
+    "5": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "small count",
+        "Percent": 0.029
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "34",
+        "Percent": 0.971
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      }
+    ],
+    "6": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "553",
+        "Percent": 0.056
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "3192",
+        "Percent": 0.322
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "6178",
+        "Percent": 0.623
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      }
+    ],
+    "7": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "255",
+        "Percent": 0.081
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "1581",
+        "Percent": 0.5
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "1324",
+        "Percent": 0.419
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      }
+    ]
+  },
+  "Year": {
+    "2017": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "204",
+        "Percent": 0.121
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "502",
+        "Percent": 0.299
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "964",
+        "Percent": 0.573
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "11",
+        "Percent": 0.007
+      }
+    ],
+    "2018": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "177",
+        "Percent": 0.106
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "497",
+        "Percent": 0.297
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "989",
+        "Percent": 0.59
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "13",
+        "Percent": 0.008
+      }
+    ],
+    "2019": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "2875",
+        "Percent": 0.177
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "6808",
+        "Percent": 0.42
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "6516",
+        "Percent": 0.402
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      }
+    ],
+    "2020": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "1974",
+        "Percent": 0.122
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "7279",
+        "Percent": 0.45
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "6921",
+        "Percent": 0.428
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "small count",
+        "Percent": 0.0
+      }
+    ],
+    "2021": [
+      {
+        "Category": "2-1 gpa",
+        "Count": "1011",
+        "Percent": 0.066
+      },
+      {
+        "Category": "3-2 gpa",
+        "Count": "6556",
+        "Percent": 0.425
+      },
+      {
+        "Category": "4-3 gpa",
+        "Count": "7809",
+        "Percent": 0.506
+      },
+      {
+        "Category": "<1 gpa",
+        "Count": "59",
+        "Percent": 0.004
+      }
+    ]
+  }
+}

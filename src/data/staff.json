@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "created_at": "2025-08-11",
+    "note": "Staff demographics aggregated from 'final_agg - staff.csv'. Counts masked where 'small count'."
+  },
+  "overall": [
+    { "label": "0-5 years", "count": 748, "percent": 0.386 },
+    { "label": "6-10 years", "count": 423, "percent": 0.218 },
+    { "label": "11-15 years", "count": 237, "percent": 0.122 },
+    { "label": "16-20 years", "count": 532, "percent": 0.274 },
+    { "label": "21+ years", "count": null, "percent": 0.0, "masked": true }
+  ],
+  "race": [
+    { "label": "2", "count": null, "percent": 0.005, "masked": true },
+    { "label": "3", "count": 82, "percent": 0.04, "masked": true },
+    { "label": "4", "count": 180, "percent": 0.103, "masked": true },
+    { "label": "1", "count": 61, "percent": 0.035, "masked": true },
+    { "label": "7", "count": 15, "percent": 0.009, "masked": true },
+    { "label": "5", "count": null, "percent": 0.002, "masked": true },
+    { "label": "6", "count": 1401, "percent": 0.8, "masked": true }
+  ],
+  "gender": [
+    { "label": "Female", "count": 1275, "percent": 0.706 },
+    { "label": "Male", "count": 532, "percent": 0.294 }
+  ],
+  "category": [
+    { "label": "Support Staff", "count": 591, "percent": 0.327 },
+    { "label": "Teaching Staff", "count": 502, "percent": 0.278 },
+    { "label": "Comm Ed/ Extracurricular", "count": 469, "percent": 0.26 },
+    { "label": "Other", "count": 157, "percent": 0.087 },
+    { "label": "Admin & Leadership", "count": 88, "percent": 0.049 }
+  ],
+  "year": [
+    { "label": "2019-20", "count": 2265, "percent": 0.188 },
+    { "label": "2020-21", "count": 2437, "percent": 0.203 },
+    { "label": "2021-22", "count": 2477, "percent": 0.206 },
+    { "label": "2022-23", "count": 2877, "percent": 0.239 },
+    { "label": "2023-24", "count": 1960, "percent": 0.163 }
+  ],
+  "highest_degree": [
+    { "label": "Masters", "count": 543, "percent": 0.7192052980132451 },
+    { "label": "Bachelors", "count": 174, "percent": 0.2304635761589404 },
+    { "label": "Specialist", "count": 20, "percent": 0.026 },
+    { "label": "Doctorate", "count": 18, "percent": 0.023 }
+  ]
+}
+
+
