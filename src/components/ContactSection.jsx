@@ -24,8 +24,8 @@ export default function ContactSection() {
         template_id: templateId,
         user_id: publicKey,
         template_params: {
-          from_name: form.name,
-          reply_to: form.email,
+          name: form.name,
+          email: form.email,
           message: form.message,
         },
       }
