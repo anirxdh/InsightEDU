@@ -134,27 +134,93 @@ export default function FRPView() {
   )
 
   return (
-    <div className="graduation-view-container" style={{ padding: 24, color: "#fff", background: "#0b0b0d", minHeight: "100vh" }}>
-      <div className="graduation-view-header" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
-        <button onClick={() => window.history.back()} aria-label="Back" style={{ background: "transparent", color: "#fff", border: "1px solid #333", width: 40, height: 40, borderRadius: 8, cursor: "pointer" }}>←</button>
-        <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0 }}>FRP</h1>
+    <div style={{ 
+      padding: 24, 
+      color: "#fff", 
+      background: "#0b0b0d", 
+      minHeight: "100vh",
+      maxWidth: "100vw",
+      overflowX: "hidden"
+    }}>
+      <div style={{ 
+        display: "flex", 
+        alignItems: "center", 
+        gap: 12, 
+        marginBottom: 12,
+        flexWrap: "wrap"
+      }}>
+        <button 
+          onClick={() => window.history.back()} 
+          aria-label="Back" 
+          style={{ 
+            background: "transparent", 
+            color: "#fff", 
+            border: "1px solid #333", 
+            width: 40, 
+            height: 40, 
+            borderRadius: 8, 
+            cursor: "pointer",
+            flexShrink: 0
+          }}
+        >
+          ←
+        </button>
+        <h1 style={{ 
+          fontSize: 28, 
+          fontWeight: 700, 
+          margin: 0,
+          flex: 1,
+          minWidth: 0
+        }}>FRP</h1>
       </div>
 
-      <div className="graduation-view-grid" style={{ display: "grid", gridTemplateColumns: "360px 1fr", gap: 24 }}>
-        <div className="graduation-view-left-panel">
-          <div style={{ border: "1px solid #2a2a32", borderRadius: 16, padding: 16, marginBottom: 16, background: "#16161a" }}>
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "360px 1fr", 
+        gap: 24,
+        maxWidth: "100%"
+      }}>
+        <div>
+          <div style={{ 
+            border: "1px solid #2a2a32", 
+            borderRadius: 16, 
+            padding: 16, 
+            marginBottom: 16, 
+            background: "#16161a" 
+          }}>
             <h3 style={{ marginTop: 0, marginBottom: 8 }}>About the data</h3>
             <p style={{ margin: 0, lineHeight: 1.5, color: "#c9c9d1" }}>
               Free/Reduced Price (FRP) distribution across groups. Overall is shown as a donut; other categories are 100% stacked bars.
             </p>
           </div>
-          <div style={{ border: "1px solid #2a2a32", borderRadius: 20, padding: 16, background: "#16161a" }}>
+          <div style={{ 
+            border: "1px solid #2a2a32", 
+            borderRadius: 20, 
+            padding: 16, 
+            background: "#16161a" 
+          }}>
             <div style={{ fontWeight: 600, marginBottom: 8 }}>Categories</div>
-            <div className="graduation-view-category-buttons" style={{ display: "grid", gap: 8 }}>
+            <div style={{ display: "grid", gap: 8 }}>
               {CATEGORY_META.map(({ key, label }) => {
                 const active = category === key
                 return (
-                  <button key={key} onClick={() => setCategory(key)} style={{ textAlign: "left", padding: "10px 12px", borderRadius: 12, border: "1px solid " + (active ? "#3b82f6" : "#2a2a32"), background: active ? "#0f172a" : "#121218", color: "#fff", cursor: "pointer" }}>
+                  <button 
+                    key={key} 
+                    onClick={() => setCategory(key)} 
+                    style={{ 
+                      textAlign: "left", 
+                      padding: "10px 12px", 
+                      borderRadius: 12, 
+                      border: "1px solid " + (active ? "#3b82f6" : "#2a2a32"), 
+                      background: active ? "#0f172a" : "#121218", 
+                      color: "#fff", 
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis"
+                    }}
+                  >
                     {label}
                   </button>
                 )
@@ -163,20 +229,114 @@ export default function FRPView() {
           </div>
         </div>
 
-        <div className="graduation-view-right" style={{ display: "grid", gap: 16 }}>
-          <div className="graduation-view-chart" style={{ border: "1px solid #2a2a32", borderRadius: 16, padding: 8, background: "#16161a", height: 560, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+        <div style={{ display: "grid", gap: 16 }}>
+          <div style={{ 
+            border: "1px solid #2a2a32", 
+            borderRadius: 16, 
+            padding: 8, 
+            background: "#16161a", 
+            height: 560, 
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "center", 
+            overflow: "hidden",
+            minHeight: 400
+          }}>
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
             {error && <div style={{ color: "salmon" }}>Failed to load: {error}</div>}
             {!loading && !error && data && (
-              <Plot key={`frp-${category}`} data={traces} layout={{ ...BASE_LAYOUT, ...layout }} config={BASE_CONFIG} style={{ width: "100%", height: "100%", maxWidth: 1000 }} useResizeHandler />
+              <Plot 
+                key={`frp-${category}`} 
+                data={traces} 
+                layout={{ ...BASE_LAYOUT, ...layout }} 
+                config={BASE_CONFIG} 
+                style={{ width: "100%", height: "100%" }} 
+                useResizeHandler 
+              />
             )}
           </div>
-          <div style={{ border: "1px solid #2a2a32", borderRadius: 16, padding: 16, background: "#16161a" }}>
+          <div style={{ 
+            border: "1px solid #2a2a32", 
+            borderRadius: 16, 
+            padding: 16, 
+            background: "#16161a" 
+          }}>
             <div style={{ fontWeight: 600, marginBottom: 8 }}>Analysis</div>
             <p style={{ margin: 0, color: "#c9c9d1" }}>Coming soon: highlight groups with highest FRP share and notable differences by category.</p>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @media (max-width: 1024px) {
+          div[style*="grid-template-columns: 360px 1fr"] {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          
+          div[style*="grid-template-columns: 360px 1fr"] > div:first-child {
+            order: 2;
+          }
+          
+          div[style*="grid-template-columns: 360px 1fr"] > div:last-child {
+            order: 1;
+          }
+          
+          div[style*="height: 560px"] {
+            height: 400px !important;
+            margin-bottom: 16px !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          div[style*="padding: 24px"] {
+            padding: 16px !important;
+          }
+          
+          h1[style*="font-size: 28px"] {
+            font-size: 24px !important;
+          }
+          
+          div[style*="display: grid"] > div > div > div > div > div {
+            grid-template-columns: 1fr !important;
+          }
+          
+          div[style*="height: 560px"] {
+            height: 350px !important;
+            padding: 4px !important;
+          }
+
+          /* Reduce donut chart size by 15% on mobile */
+          div[style*="height: 560px"] .js-plotly-plot {
+            transform: scale(0.85) !important;
+            transform-origin: center center !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          div[style*="padding: 24px"] {
+            padding: 12px !important;
+          }
+          
+          h1[style*="font-size: 28px"] {
+            font-size: 20px !important;
+          }
+          
+          div[style*="height: 560px"] {
+            height: 300px !important;
+          }
+          
+          div[style*="grid-template-columns: 360px 1fr"] {
+            gap: 12px !important;
+          }
+
+          /* Reduce donut chart size by 15% on small mobile */
+          div[style*="height: 560px"] .js-plotly-plot {
+            transform: scale(0.85) !important;
+            transform-origin: center center !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }
