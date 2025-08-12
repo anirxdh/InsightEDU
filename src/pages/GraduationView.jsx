@@ -253,9 +253,9 @@ export default function GraduationView() {
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
             {!loading && data && traces.length > 0 && (
               <Plot 
-                key={`graduation-${category}`}
+                key={`graduation-${category}-${Date.now()}`}
                 data={traces} 
-                layout={layout} 
+                layout={{ ...layout, autosize: true }} 
                 config={BASE_CONFIG} 
                 style={{ width: "100%", height: "100%" }} 
                 useResizeHandler 

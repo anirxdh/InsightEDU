@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
-import { THEME } from "../utils/theme"
+import { CHART_COLORS, THEME } from "../utils/theme"
 import gpaDataRaw from "../data/final_agg_gpa.json"
 
-const CATEGORY_COLORS = ["#7c3aed", "#a78bfa", "#c4b5fd", "#581c87"]
+const CATEGORY_COLORS = [CHART_COLORS.primary, "#a78bfa", "#c4b5fd", "#581c87"]
 
 const BASE_LAYOUT = {
   paper_bgcolor: THEME.background,
@@ -16,7 +16,11 @@ const BASE_LAYOUT = {
   yaxis: { gridcolor: THEME.grid, zerolinecolor: THEME.grid },
 }
 
-const BASE_CONFIG = { displayModeBar: true, responsive: true, modeBarButtonsToRemove: ["select2d", "lasso2d"] }
+const BASE_CONFIG = { 
+  displayModeBar: true, 
+  responsive: true, 
+  modeBarButtonsToRemove: ["select2d", "lasso2d"] 
+}
 
 const CATEGORY_META = [
   { key: "Overall", label: "Overall GPA distribution", type: "donut" },
@@ -44,8 +48,17 @@ function buildStacked(groupMap) {
     y: groupNames.map((g) => {
       const items = sortAndMap(groupMap[g] || [])
       const found = items.find((i) => i.Category === bucket)
-      return found ? Number(found.Percent) : 0
+      const value = found ? Number(found.Percent) : 0
+      return value
     }),
+    text: groupNames.map((g) => {
+      const items = sortAndMap(groupMap[g] || [])
+      const found = items.find((i) => i.Category === bucket)
+      const value = found ? Number(found.Percent) : 0
+      return `${Math.round(value * 100)}%`
+    }),
+    texttemplate: "%{text}",
+    textposition: "auto",
     marker: { color: CATEGORY_COLORS[idx % CATEGORY_COLORS.length] },
     hovertemplate: `<b>%{x}</b><br>${bucket}: %{y:.1%}<extra></extra>`,
   }))
@@ -82,7 +95,12 @@ function makeChart(category, data) {
     const { traces } = buildStacked(groupMap)
     return {
       traces,
-      layout: { ...BASE_LAYOUT, title: meta.label, barmode: "stack", yaxis: { tickformat: ".0%", rangemode: "tozero" } },
+      layout: { 
+        ...BASE_LAYOUT, 
+        title: meta.label, 
+        barmode: "stack", 
+        yaxis: { tickformat: ".0%", rangemode: "tozero" } 
+      },
     }
   }
 
@@ -96,51 +114,79 @@ export default function GPAView() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    // Hard refresh after 0.1 seconds to ensure charts render properly
-    const refreshTimer = setTimeout(() => {
-      if (!sessionStorage.getItem('refreshed:gpa')) {
-        sessionStorage.setItem('refreshed:gpa', 'true')
-        window.location.reload()
-        return
-      }
-    }, 100)
-
     setData(gpaDataRaw)
     setLoading(false)
-
-    return () => clearTimeout(refreshTimer)
   }, [])
 
-  // Force a resize after category switch to avoid first-click blank charts in some browsers
-  useEffect(() => {
-    const id = setTimeout(() => window.dispatchEvent(new Event('resize')), 0)
-    return () => clearTimeout(id)
-  }, [category])
-
-  const { traces, layout } = useMemo(() => (data ? makeChart(category, data) : { traces: [], layout: {} }), [category, data])
+  const { traces, layout } = useMemo(
+    () => (data ? makeChart(category, data) : { traces: [], layout: {} }),
+    [category, data]
+  )
 
   return (
     <div className="graduation-view-container" style={{ padding: 24, color: "#fff", background: "#0b0b0d", minHeight: "100vh" }}>
+      {/* Header row */}
       <div className="graduation-view-header" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
-        <button onClick={() => window.history.back()} aria-label="Back" style={{ background: "transparent", color: "#fff", border: "1px solid #333", width: 40, height: 40, borderRadius: 8, cursor: "pointer" }}>←</button>
-        <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0 }}>GPA</h1>
+        <button
+          onClick={() => window.history.back()}
+          aria-label="Back"
+          style={{
+            background: "transparent",
+            color: "#fff",
+            border: "1px solid #333",
+            width: 40,
+            height: 40,
+            borderRadius: 8,
+            cursor: "pointer",
+          }}
+        >
+          ←
+        </button>
+        <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0 }}>GPA Distribution</h1>
       </div>
 
+      {/* 2-column main area */}
       <div className="graduation-view-grid" style={{ display: "grid", gridTemplateColumns: "360px 1fr", gap: 24 }}>
+        {/* Left column */}
         <div className="graduation-view-left-panel">
-          <div style={{ border: "1px solid #2a2a32", borderRadius: 16, padding: 16, marginBottom: 16, background: "#16161a" }}>
+          {/* Description */}
+          <div
+            style={{
+              border: "1px solid #2a2a32",
+              borderRadius: 16,
+              padding: 16,
+              marginBottom: 16,
+              background: "#16161a",
+            }}
+          >
             <h3 style={{ marginTop: 0, marginBottom: 8 }}>About the data</h3>
             <p style={{ margin: 0, lineHeight: 1.5, color: "#c9c9d1" }}>
-              GPA distribution across groups. Overall is a donut; the rest are 100% stacked bars by GPA buckets.
+              GPA distribution across different groups. Overall shows a donut chart, and others show 100% stacked bars by GPA buckets.
+              <br />• <b>Overall</b>: donut chart
+              <br />• Others: 100% stacked bars by GPA ranges
             </p>
           </div>
+
+          {/* Filter/Category panel */}
           <div style={{ border: "1px solid #2a2a32", borderRadius: 20, padding: 16, background: "#16161a" }}>
             <div style={{ fontWeight: 600, marginBottom: 8 }}>Categories</div>
             <div className="graduation-view-category-buttons" style={{ display: "grid", gap: 8 }}>
               {CATEGORY_META.map(({ key, label }) => {
                 const active = category === key
                 return (
-                  <button key={key} onClick={() => setCategory(key)} style={{ textAlign: "left", padding: "10px 12px", borderRadius: 12, border: "1px solid " + (active ? "#3b82f6" : "#2a2a32"), background: active ? "#0f172a" : "#121218", color: "#fff", cursor: "pointer" }}>
+                  <button
+                    key={key}
+                    onClick={() => setCategory(key)}
+                    style={{
+                      textAlign: "left",
+                      padding: "10px 12px",
+                      borderRadius: 12,
+                      border: "1px solid " + (active ? "#3b82f6" : "#2a2a32"),
+                      background: active ? "#0f172a" : "#121218",
+                      color: "#fff",
+                      cursor: "pointer",
+                    }}
+                  >
                     {label}
                   </button>
                 )
@@ -149,22 +195,38 @@ export default function GPAView() {
           </div>
         </div>
 
+        {/* Right column: chart + analysis stacked */}
         <div className="graduation-view-right" style={{ display: "grid", gap: 16 }}>
-          <div className="graduation-view-chart" style={{ border: "1px solid #2a2a32", borderRadius: 16, padding: 8, background: "#16161a", height: 560, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+          <div
+            className="graduation-view-chart"
+            style={{
+              border: "1px solid #2a2a32",
+              borderRadius: 16,
+              padding: 8,
+              background: "#16161a",
+              height: 560,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              overflow: "hidden",
+            }}
+          >
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
             {error && <div style={{ color: "salmon" }}>Failed to load: {error}</div>}
             {!loading && !error && data && (
-              <Plot key={`gpa-${category}`} data={traces} layout={{ ...BASE_LAYOUT, ...layout, autosize: true, uirevision: category }} config={BASE_CONFIG} style={{ width: "100%", height: 560 }} useResizeHandler />
+              <Plot key={`gpa-${category}`} data={traces} layout={{ ...layout }} config={BASE_CONFIG} style={{ width: "100%", height: "100%", maxWidth: 1000 }} useResizeHandler />
             )}
           </div>
+
+          {/* Analysis box */}
           <div style={{ border: "1px solid #2a2a32", borderRadius: 16, padding: 16, background: "#16161a" }}>
             <div style={{ fontWeight: 600, marginBottom: 8 }}>Analysis</div>
-            <p style={{ margin: 0, color: "#c9c9d1" }}>Coming soon: callouts for GPA improvements/declines by group.</p>
+            <p style={{ margin: 0, color: "#c9c9d1" }}>
+              Coming soon: insights about GPA trends and distributions across different student groups.
+            </p>
           </div>
         </div>
       </div>
     </div>
   )
 }
-
-
