@@ -12,6 +12,39 @@
   gap: 2.5rem;
 }
 
+/* Terminal styling */
+.contact-section.terminal {
+  max-width: 1200px;
+  padding: 0;
+  overflow: hidden;
+  margin: 2.5rem auto 0 auto; /* add gap from previous section */
+}
+.terminal-header {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: #23232a;
+  border-bottom: 1px solid #2a2a32;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.terminal-header .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.terminal-header .red { background: #ff5f56; }
+.terminal-header .yellow { background: #ffbd2e; }
+.terminal-header .green { background: #27c93f; }
+.terminal-header .title { margin-left: auto; color: #b3b3b3; font-size: 0.9rem; }
+
+.contact-section.terminal .contact-form {
+  padding: 1.5rem 2rem 2rem 2rem;
+  max-width: 520px; /* keep form compact so it doesn't look stretched */
+  margin: 0 auto;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -39,6 +72,7 @@
   box-shadow: 0 1px 4px 0 #23263a22;
   transition: box-shadow 0.2s;
 }
+.field-input::placeholder { color: #7a7d8c; }
 .field-input:focus {
   box-shadow: 0 2px 12px 0 #6ec1ff55;
 }
@@ -55,10 +89,12 @@
   transition: background 0.2s, color 0.2s;
   width: 100%;
 }
+.field-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 .field-btn:hover {
   background: #b3e0ff;
   color: #23232a;
 }
+.error-text { color: #ff9a9a; font-size: 0.9rem; margin-top: 0.5rem; }
 
 @media (max-width: 700px) {
   .contact-section {

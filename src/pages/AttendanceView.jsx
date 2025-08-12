@@ -225,7 +225,7 @@ export default function AttendanceView() {
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
             {error && <div style={{ color: "salmon" }}>Failed to load: {error}</div>}
             {!loading && !error && data && (
-              <Plot data={traces} layout={{ ...layout }} config={BASE_CONFIG} style={{ width: "100%", height: "100%", maxWidth: 1000 }} useResizeHandler />
+              <Plot key={`attendance-${category}`} data={traces} layout={{ ...layout }} config={BASE_CONFIG} style={{ width: "100%", height: "100%", maxWidth: 1000 }} useResizeHandler />
             )}
           </div>
 

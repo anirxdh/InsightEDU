@@ -2,7 +2,7 @@
   background: #18181b;
   margin: 2.5rem auto 0 auto;
   padding: 2.5rem 2rem 2.5rem 2rem;
-  max-width: 1000px;
+  max-width: 1200px;
   border-radius: 2rem;
   box-shadow: 0 2px 16px 0 #23263a44;
   border: 1.5px solid #23263a;
@@ -19,11 +19,35 @@
   margin-bottom: 1.2rem;
   letter-spacing: 1px;
 }
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+.why-visual {
+  background: #121218;
+  border: 1.5px solid #23263a;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+.three-placeholder {
+  color: #a7a7b4;
+  font-size: 1.4rem;
+  font-family: 'General Sans', sans-serif;
+}
 .why-content {
   font-size: 1.15rem;
   color: #fff;
   line-height: 1.7;
   font-family: 'General Sans', sans-serif;
+  background: #121218;
+  border: 1.5px solid #23263a;
+  border-radius: 1.5rem;
+  padding: 1.25rem 1.5rem;
 }
 .why-content b {
   color: #D5D8EA;
@@ -34,6 +58,7 @@
     border-radius: 1.5rem;
     margin: 1.5rem 0.5rem 0.5rem 0.5rem;
   }
+  .why-grid { grid-template-columns: 1fr; }
   .why-section h2 {
     font-size: 1.3rem;
   }

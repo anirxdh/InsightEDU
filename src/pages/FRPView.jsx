@@ -168,7 +168,7 @@ export default function FRPView() {
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
             {error && <div style={{ color: "salmon" }}>Failed to load: {error}</div>}
             {!loading && !error && data && (
-              <Plot data={traces} layout={{ ...BASE_LAYOUT, ...layout }} config={BASE_CONFIG} style={{ width: "100%", height: "100%", maxWidth: 1000 }} useResizeHandler />
+              <Plot key={`frp-${category}`} data={traces} layout={{ ...BASE_LAYOUT, ...layout }} config={BASE_CONFIG} style={{ width: "100%", height: "100%", maxWidth: 1000 }} useResizeHandler />
             )}
           </div>
           <div style={{ border: "1px solid #2a2a32", borderRadius: 16, padding: 16, background: "#16161a" }}>

@@ -31,9 +31,9 @@
     { "label": "Special Education", "graduated": 0.76, "not_graduated": 0.24, "masked": false }
   ],
   "year": [
-    { "label": "2019", "graduated": 0.83, "not_graduated": 0.17 },
-    { "label": "2020", "graduated": 0.85, "not_graduated": 0.15 },
-    { "label": "2021", "graduated": 0.87, "not_graduated": 0.13 },
-    { "label": "2022", "graduated": 0.88, "not_graduated": 0.12 }
+    { "label": "2019", "graduated": 0.83, "not_graduated": 0.17, "masked": false },
+    { "label": "2020", "graduated": 0.85, "not_graduated": 0.15, "masked": false },
+    { "label": "2021", "graduated": 0.87, "not_graduated": 0.13, "masked": false },
+    { "label": "2022", "graduated": 0.88, "not_graduated": 0.12, "masked": false }
   ]
 }

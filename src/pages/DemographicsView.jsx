@@ -164,7 +164,7 @@ export default function DemographicsView() {
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
             {error && <div style={{ color: "salmon" }}>Failed to load: {error}</div>}
             {!loading && !error && data && (
-              <Plot data={traces} layout={{ ...BASE_LAYOUT, ...layout }} config={BASE_CONFIG} style={{ width: "100%", height: "100%", maxWidth: 1000 }} useResizeHandler />
+              <Plot key={`demo-${category}`} data={traces} layout={{ ...BASE_LAYOUT, ...layout }} config={BASE_CONFIG} style={{ width: "100%", height: "100%", maxWidth: 1000 }} useResizeHandler />
             )}
           </div>
 

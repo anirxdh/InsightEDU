@@ -5,16 +5,20 @@ const AboutSection = () => (
   <section className="about-section">
     <h2>About Me &amp; My Mentor</h2>
     <div className="about-cards">
-      <div className="about-card">
-        <img src="/images/your_photo.jpg" alt="Your portrait" className="about-img" />
-        <h3>Your Name</h3>
-        <p>Builder, explorer, and passionate about educational data. I love making complex insights accessible and interactive for everyone.</p>
-      </div>
-      <div className="about-card mentor">
-        <img src="/images/mentor_photo.jpg" alt="Mentor portrait" className="about-img" />
-        <h3>Prof. Mentor Name</h3>
-        <p>My mentor and guide. Always encouraging curiosity, rigor, and creative problem-solving in data science and education.</p>
-      </div>
+      <a className="about-link" href="https://anirudhvasudevan.netlify.app/" target="_blank" rel="noopener noreferrer">
+        <div className="about-card">
+          <img src="/images/anirudhvasudevan.jpeg" alt="Anirudh Vasudevan portrait" className="about-img" />
+          <h3>Anirudh Vasudevan</h3>
+          <p>I’m a Full‑Stack Developer with a strong inclination toward frontend development and AI integration. Currently pursuing my MS in Computer Science at the University of Minnesota (UMN), I focus on building dynamic, responsive, and intelligent applications that merge creativity with cutting‑edge technology.</p>
+        </div>
+      </a>
+      <a className="about-link" href="https://erichkummerfeld.com/" target="_blank" rel="noopener noreferrer">
+        <div className="about-card mentor">
+          <img src="/images/erichKummerfld.jpeg" alt="Mentor portrait" className="about-img" />
+          <h3>Erich Kummerfeld</h3>
+          <p>Dr. Kummerfeld’s research focuses on statistical and machine‑learning methods for causal discovery, especially causal latent variable models. He develops new algorithms and theory, conducts rigorous simulation benchmarks, and applies these methods to health data to help inform new treatments.</p>
+        </div>
+      </a>
     </div>
   </section>
 );
