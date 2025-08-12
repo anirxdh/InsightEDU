@@ -26,14 +26,14 @@ const BASE_CONFIG = {
 }
 
 const CATEGORY_META = [
-  { key: "overall", label: "Overall", type: "pie" },
+  { key: "overall", label: "Overall Graduation", type: "pie" },
   { key: "year", label: "Year (timeline)", type: "line" },
-  { key: "gender", label: "Gender", type: "bars" },
-  { key: "federal_race_code", label: "Race", type: "bars" },
-  { key: "chronically_absent", label: "Chronically Absent", type: "bars" },
-  { key: "frp_eligible_flag", label: "FRP Eligible", type: "bars" },
-  { key: "english_learner_flag", label: "English Learner", type: "bars" },
-  { key: "special_education_flag", label: "Special Education", type: "bars" }
+  { key: "gender", label: "Gender", type: "bars-grouped" },
+  { key: "federal_race_code", label: "Race", type: "bars-grouped" },
+  { key: "chronically_absent", label: "Chronically Absent", type: "bars-grouped" },
+  { key: "frp_eligible_flag", label: "FRP Eligible", type: "bars-grouped" },
+  { key: "english_learner_flag", label: "English Learner", type: "bars-grouped" },
+  { key: "special_education_flag", label: "Special Education", type: "bars-grouped" }
 ]
 
 function makeChart(category, data) {
@@ -113,6 +113,9 @@ function makeChart(category, data) {
   const yGrad = rows.map((r) => r.graduated)
   const yNotGrad = rows.map((r) => r.not_graduated)
   
+  // Debug logging for grouped bars
+  console.log(`Creating grouped bars for ${category}:`, { x, yGrad, yNotGrad })
+  
   return {
     traces: [
       {
@@ -142,7 +145,7 @@ function makeChart(category, data) {
       ...BASE_LAYOUT,
       title: meta.label || "Category",
       barmode: "group",
-      yaxis: { tickformat: ".0%", rangemode: "tozero" },
+      yaxis: { tickformat: ".0%", rangemode: "tozero", range: [0, 1] },
     },
   }
 }
@@ -151,18 +154,22 @@ export default function GraduationView() {
   const [category, setCategory] = useState("overall")
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    console.log("Loading graduation data:", graduationData)
-    setData(graduationData)
-    setLoading(false)
+    try {
+      console.log("Loading graduation data:", graduationData)
+      setData(graduationData)
+      setLoading(false)
+    } catch (e) {
+      console.error("Error loading graduation data:", e)
+      setError(String(e))
+    }
   }, [])
 
   const { traces, layout } = useMemo(() => {
     if (!data) return { traces: [], layout: {} }
-    const result = makeChart(category, data)
-    console.log(`Chart for ${category}:`, result)
-    return result
+    return makeChart(category, data)
   }, [category, data])
 
   return (
@@ -200,7 +207,7 @@ export default function GraduationView() {
           }}>
             <h3 style={{ marginTop: 0, marginBottom: 8 }}>About the data</h3>
             <p style={{ margin: 0, lineHeight: 1.5, color: "#c9c9d1" }}>
-              Graduation outcomes by category. Overall shows a pie chart, Year shows trends, and others show grouped bars.
+              Graduation outcomes by category. Overall shows a pie chart, Year shows trends, and others show grouped bars comparing graduated vs not graduated rates.
             </p>
           </div>
 
@@ -251,9 +258,10 @@ export default function GraduationView() {
             overflow: "hidden",
           }}>
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
-            {!loading && data && traces.length > 0 && (
+            {error && <div style={{ color: "salmon" }}>Failed to load: {error}</div>}
+            {!loading && !error && data && traces.length > 0 && (
               <Plot 
-                key={`graduation-${category}-${Date.now()}`}
+                key={`graduation-${category}`}
                 data={traces} 
                 layout={{ ...layout, autosize: true }} 
                 config={BASE_CONFIG} 
@@ -261,7 +269,7 @@ export default function GraduationView() {
                 useResizeHandler 
               />
             )}
-            {!loading && data && traces.length === 0 && (
+            {!loading && !error && data && traces.length === 0 && (
               <div style={{ color: "#a1a1aa" }}>No data available for this category</div>
             )}
           </div>
@@ -275,7 +283,9 @@ export default function GraduationView() {
           }}>
             <div style={{ fontWeight: 600, marginBottom: 8 }}>Analysis</div>
             <p style={{ margin: 0, color: "#c9c9d1" }}>
-              Graduation rate insights will appear here based on the selected category.
+              {category === "overall" && "Overall graduation rate shows the percentage of students who successfully graduated."}
+              {category === "year" && "Graduation trends over time show how rates have changed across different academic years."}
+              {category !== "overall" && category !== "year" && "Grouped bars show graduation rates (blue) vs non-graduation rates (orange) for each category, allowing easy comparison of outcomes across different student groups."}
             </p>
           </div>
         </div>
