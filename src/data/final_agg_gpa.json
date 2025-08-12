@@ -46,7 +46,7 @@
     ]
   },
   "Gender": {
-    "F": [
+    "0": [
       {
         "Category": "2-1 gpa",
         "Count": "1468",
@@ -68,7 +68,7 @@
         "Percent": 0.002
       }
     ],
-    "M": [
+    "1": [
       {
         "Category": "2-1 gpa",
         "Count": "4585",

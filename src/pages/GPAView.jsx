@@ -70,7 +70,30 @@ function makeChart(category, data) {
   if (!meta) return { traces: [], layout: {} }
 
   if (meta.type === "donut") {
-    const items = sortAndMap((data[category] || {}).All || [])
+    // Create Overall data from Gender data since it's missing from the JSON
+    let overallData
+    if (category === "Overall" && !data[category]) {
+      const genderData = data["Gender"] || {}
+      const fData = genderData["F"] || []
+      const mData = genderData["M"] || []
+      
+      // Combine F and M data to create overall percentages
+      const combined = {}
+      GPA_BUCKET_ORDER.forEach(bucket => {
+        const fItem = fData.find(item => item.Category === bucket)
+        const mItem = mData.find(item => item.Category === bucket)
+        const fPercent = fItem ? Number(fItem.Percent) : 0
+        const mPercent = mItem ? Number(mItem.Percent) : 0
+        // Simple average for overall
+        combined[bucket] = (fPercent + mPercent) / 2
+      })
+      
+      overallData = { All: Object.entries(combined).map(([Category, Percent]) => ({ Category, Percent })) }
+    } else {
+      overallData = data[category] || {}
+    }
+    
+    const items = sortAndMap(overallData.All || [])
     const labels = items.map((i) => i.Category)
     const values = items.map((i) => Number(i.Percent))
     return {
@@ -99,7 +122,7 @@ function makeChart(category, data) {
         ...BASE_LAYOUT, 
         title: meta.label, 
         barmode: "stack", 
-        yaxis: { tickformat: ".0%", rangemode: "tozero" } 
+        yaxis: { tickformat: ".0%", rangemode: "tozero", range: [0, 1] } 
       },
     }
   }
@@ -111,7 +134,6 @@ export default function GPAView() {
   const [category, setCategory] = useState("Overall")
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
 
   useEffect(() => {
     setData(gpaDataRaw)
@@ -212,9 +234,18 @@ export default function GPAView() {
             }}
           >
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
-            {error && <div style={{ color: "salmon" }}>Failed to load: {error}</div>}
-            {!loading && !error && data && (
-              <Plot key={`gpa-${category}`} data={traces} layout={{ ...layout }} config={BASE_CONFIG} style={{ width: "100%", height: "100%", maxWidth: 1000 }} useResizeHandler />
+            {!loading && data && traces.length > 0 && (
+              <Plot 
+                key={`gpa-${category}`}
+                data={traces} 
+                layout={{ ...layout, autosize: true }} 
+                config={BASE_CONFIG} 
+                style={{ width: "100%", height: "100%" }} 
+                useResizeHandler 
+              />
+            )}
+            {!loading && data && traces.length === 0 && (
+              <div style={{ color: "#a1a1aa" }}>No data available for this category</div>
             )}
           </div>
 
