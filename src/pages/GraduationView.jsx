@@ -57,7 +57,7 @@ function makeChart(category, data) {
           hole: 0.45,
           sort: false,
           direction: "clockwise",
-          hovertemplate: "%{label}: %{percent:.1%}<extra></extra>",
+          hovertemplate: "<b>%{label}</b><br>Percentage: %{percent:.1%}<br><i>Count data not available</i><extra></extra>",
         },
       ],
       layout: { 
@@ -83,7 +83,7 @@ function makeChart(category, data) {
           y: yGrad,
           marker: { color: COLORS.graduated },
           line: { color: COLORS.graduated },
-          hovertemplate: "<b>%{x}</b><br>Graduated: %{y:.1%}<extra></extra>",
+          hovertemplate: "<b>%{x}</b><br><b>Graduated:</b> %{y:.1%}<br><i>Count data not available</i><extra></extra>",
         },
         {
           type: "scatter",
@@ -93,7 +93,7 @@ function makeChart(category, data) {
           y: yNotGrad,
           marker: { color: COLORS.not_graduated },
           line: { color: COLORS.not_graduated },
-          hovertemplate: "<b>%{x}</b><br>Not Graduated: %{y:.1%}<extra></extra>",
+          hovertemplate: "<b>%{x}</b><br><b>Not Graduated:</b> %{y:.1%}<br><i>Count data not available</i><extra></extra>",
         },
       ],
       layout: {
@@ -128,7 +128,7 @@ function makeChart(category, data) {
         texttemplate: "%{text}",
         textposition: "auto",
         marker: { color: COLORS.graduated },
-        hovertemplate: "<b>%{x}</b><br>Graduated: %{y:.1%}<extra></extra>",
+        hovertemplate: "<b>%{x}</b><br><b>Graduated:</b> %{y:.1%}<br><i>Count data not available</i><extra></extra>",
       },
       {
         type: "bar",
@@ -139,7 +139,7 @@ function makeChart(category, data) {
         texttemplate: "%{text}",
         textposition: "auto",
         marker: { color: COLORS.not_graduated },
-        hovertemplate: "<b>%{x}</b><br>Not Graduated: %{y:.1%}<extra></extra>",
+        hovertemplate: "<b>%{x}</b><br><b>Not Graduated:</b> %{y:.1%}<br><i>Count data not available</i><extra></extra>",
       },
     ],
     layout: {
@@ -233,7 +233,7 @@ export default function GraduationView() {
           }}>
             <h3 style={{ marginTop: 0, marginBottom: 8 }}>About the data</h3>
             <p style={{ margin: 0, lineHeight: 1.5, color: "#c9c9d1" }}>
-              Graduation outcomes by category. Overall shows a pie chart, Year shows trends, and others show grouped bars comparing graduated vs not graduated rates.
+              Graduation outcomes analysis using data from <b>2018-19 to 2022-23</b> academic years. This comprehensive dataset tracks student graduation rates across multiple dimensions to identify patterns and trends in educational outcomes.
             </p>
           </div>
 

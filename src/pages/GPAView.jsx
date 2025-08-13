@@ -61,7 +61,12 @@ function buildStacked(groupMap) {
     texttemplate: "%{text}",
     textposition: "auto",
     marker: { color: CATEGORY_COLORS[idx % CATEGORY_COLORS.length] },
-    hovertemplate: `<b>%{x}</b><br>${bucket}: %{y:.1%}<extra></extra>`,
+    customdata: groupNames.map((g) => {
+      const items = sortAndMap(groupMap[g] || [])
+      const found = items.find((i) => i.Category === bucket)
+      return found && found.Count && found.Count !== "small count" ? `n=${found.Count}` : ""
+    }),
+    hovertemplate: `<b>%{x}</b><br>${bucket}: %{y:.1%}<br>%{customdata}<extra></extra>`,
   }))
   return { traces }
 }
@@ -107,7 +112,11 @@ function makeChart(category, data) {
           hole: 0.45,
           sort: false,
           direction: "clockwise",
-          hovertemplate: "%{label}: %{percent:.1%} <extra></extra>",
+          customdata: items.map((i) => {
+            // For overall, we don't have individual counts, so we'll show a note
+            return i.Count && i.Count !== "small count" ? `n=${i.Count}` : ""
+          }),
+          hovertemplate: "%{label}: %{percent:.1%}<br>%{customdata}<extra></extra>",
         },
       ],
       layout: { ...BASE_LAYOUT, title: "Overall GPA Distribution" },
@@ -184,9 +193,7 @@ export default function GPAView() {
           >
             <h3 style={{ marginTop: 0, marginBottom: 8 }}>About the data</h3>
             <p style={{ margin: 0, lineHeight: 1.5, color: "#c9c9d1" }}>
-              GPA distribution across different groups. Overall shows a donut chart, and others show 100% stacked bars by GPA buckets.
-              <br />• <b>Overall</b>: donut chart
-              <br />• Others: 100% stacked bars by GPA ranges
+              GPA distribution analysis using data from <b>2017 to 2021</b> academic years. This dataset examines student academic performance across different demographic and institutional factors to understand achievement patterns and identify areas for improvement.
             </p>
           </div>
 

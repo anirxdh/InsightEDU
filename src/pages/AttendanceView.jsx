@@ -171,11 +171,7 @@ export default function AttendanceView() {
           >
             <h3 style={{ marginTop: 0, marginBottom: 8 }}>About the data</h3>
             <p style={{ margin: 0, lineHeight: 1.5, color: "#c9c9d1" }}>
-              This page shows chronic absenteeism percent (share of students missing a substantial portion of school).
-              Use the category list below to switch the visualization.
-              <br />• <b>Overall</b>: donut
-              <br />• <b>Year</b>: trend line
-              <br />• Others: single-series bars by category
+              Chronic absenteeism analysis using data from <b>2019-20 to 2023-24</b> academic years. This dataset shows the percentage of students missing a substantial portion of school and helps identify attendance patterns to support early intervention strategies for improved student engagement and academic success.
             </p>
           </div>
 

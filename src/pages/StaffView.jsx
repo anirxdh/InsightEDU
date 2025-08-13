@@ -166,7 +166,7 @@ export default function StaffView() {
           }}>
             <h3 style={{ marginTop: 0, marginBottom: 8 }}>About the data</h3>
             <p style={{ margin: 0, lineHeight: 1.5, color: "#c9c9d1" }}>
-              Staff composition and experience, by category and over time. Values are percentages of staff; some counts are masked due to small numbers.
+              Staff composition and experience analysis using data from <b>2019 to 2023</b> academic years. This dataset examines the professional characteristics of educational staff to support workforce planning, professional development initiatives, and ensure diverse representation across the educational system.
             </p>
           </div>
           <div style={{ 

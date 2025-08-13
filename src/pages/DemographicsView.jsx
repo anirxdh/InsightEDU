@@ -81,7 +81,10 @@ function makeChart(category, data) {
           hole: 0.45,
           sort: false,
           direction: "clockwise",
-          hovertemplate: "Cat %{label}: %{percent:.1%} <extra></extra>",
+          customdata: items.map((i) => {
+            return i.Count && i.Count !== "small count" ? `n=${i.Count}` : ""
+          }),
+          hovertemplate: "Cat %{label}: %{percent:.1%}<br>%{customdata}<extra></extra>",
         },
       ],
       layout: { ...BASE_LAYOUT, title: "Overall Demographic Distribution" },
@@ -183,9 +186,7 @@ export default function DemographicsView() {
           }}>
             <h3 style={{ marginTop: 0, marginBottom: 8 }}>About the data</h3>
             <p style={{ margin: 0, lineHeight: 1.5, color: "#c9c9d1" }}>
-              This page shows demographic distributions by category. Use the list below to change the visualization.
-              <br />• Overall: donut of categories
-              <br />• Year/Gender/Grade/School: 100% stacked bars
+              Demographic distribution analysis using data from <b>2019-20 to 2023-24</b> academic years. This dataset provides insights into the student population composition across various institutional and demographic factors to support equitable resource allocation and program planning.
             </p>
           </div>
 

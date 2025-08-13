@@ -63,7 +63,11 @@ function buildStackedFromGroupMap(groupMap) {
       return found ? Number(found.Percent) : 0
     }),
     marker: { color: CATEGORY_COLORS[idx % CATEGORY_COLORS.length] },
-    hovertemplate: `<b>%{x}</b><br>${labelFor(code)}: %{y:.1%}<extra></extra>`,
+    customdata: groupNames.map((g) => {
+      const found = (groupMap[g] || []).find((i) => i.Category === code)
+      return found && found.Count && found.Count !== "small count" ? `n=${found.Count}` : ""
+    }),
+    hovertemplate: `<b>%{x}</b><br>${labelFor(code)}: %{y:.1%}<br>%{customdata}<extra></extra>`,
   }))
 
   return { traces }
@@ -87,7 +91,10 @@ function makeChart(category, data) {
           hole: 0.45,
           sort: false,
           direction: "clockwise",
-          hovertemplate: "%{label}: %{percent:.1%}<extra></extra>",
+          customdata: items.map((i) => {
+            return i.Count && i.Count !== "small count" ? `n=${i.Count}` : ""
+          }),
+          hovertemplate: "%{label}: %{percent:.1%}<br>%{customdata}<extra></extra>",
         },
       ],
       layout: { ...BASE_LAYOUT, title: "Overall FRP Distribution" },
@@ -191,7 +198,7 @@ export default function FRPView() {
           }}>
             <h3 style={{ marginTop: 0, marginBottom: 8 }}>About the data</h3>
             <p style={{ margin: 0, lineHeight: 1.5, color: "#c9c9d1" }}>
-              Free/Reduced Price (FRP) distribution across groups. Overall is shown as a donut; other categories are 100% stacked bars.
+              Free/Reduced Price (FRP) meal eligibility analysis using data from <b>2019-20 to 2023-24</b> academic years. This dataset examines student access to nutritional support programs, which serves as an important indicator of socioeconomic diversity and helps identify students who may need additional academic and social support services.
             </p>
           </div>
           <div style={{ 
