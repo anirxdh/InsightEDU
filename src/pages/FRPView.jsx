@@ -306,10 +306,20 @@ export default function FRPView() {
             padding: 4px !important;
           }
 
-          /* Reduce donut chart size by 15% on mobile */
+          /* Better donut chart layout for mobile */
           div[style*="height: 560px"] .js-plotly-plot {
             transform: scale(0.85) !important;
             transform-origin: center center !important;
+            margin-top: 50px !important;
+            margin-bottom: 20px !important;
+          }
+          
+          /* Ensure chart container has enough space */
+          div[style*="height: 560px"] {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 30px 10px !important;
           }
         }
 
@@ -330,10 +340,20 @@ export default function FRPView() {
             gap: 12px !important;
           }
 
-          /* Reduce donut chart size by 15% on small mobile */
+          /* Better donut chart layout for small mobile */
           div[style*="height: 560px"] .js-plotly-plot {
-            transform: scale(0.85) !important;
+            transform: scale(0.8) !important;
             transform-origin: center center !important;
+            margin-top: 40px !important;
+            margin-bottom: 15px !important;
+          }
+          
+          /* Ensure chart container has enough space */
+          div[style*="height: 560px"] {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 25px 8px !important;
           }
         }
       `}</style>

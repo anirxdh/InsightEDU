@@ -1,13 +1,13 @@
 import React from 'react';
 import './WhySection.css';
+import ChemistryLab3D from './ChemistryLab3D';
 
 const WhySection = () => (
   <section className="why-section">
     <h2>Why this project?</h2>
     <div className="why-grid">
       <div className="why-visual">
-        {/* Placeholder for 3D component. Swap the div below with your Three.js component */}
-        <div className="three-placeholder">3D component</div>
+        <ChemistryLab3D />
       </div>
       <div className="why-content">
         <p>

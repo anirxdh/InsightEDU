@@ -173,9 +173,22 @@ export default function GraduationView() {
   }, [category, data])
 
   return (
-    <div style={{ padding: 24, color: "#fff", background: "#0b0b0d", minHeight: "100vh" }}>
+    <div style={{ 
+      padding: 24, 
+      color: "#fff", 
+      background: "#0b0b0d", 
+      minHeight: "100vh",
+      maxWidth: "100vw",
+      overflowX: "hidden"
+    }}>
       {/* Header */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
+      <div style={{ 
+        display: "flex", 
+        alignItems: "center", 
+        gap: 12, 
+        marginBottom: 12,
+        flexWrap: "wrap"
+      }}>
         <button
           onClick={() => window.history.back()}
           style={{
@@ -186,15 +199,27 @@ export default function GraduationView() {
             height: 40,
             borderRadius: 8,
             cursor: "pointer",
+            flexShrink: 0
           }}
         >
           ←
         </button>
-        <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0 }}>Graduation Outcomes</h1>
+        <h1 style={{ 
+          fontSize: 28, 
+          fontWeight: 700, 
+          margin: 0,
+          flex: 1,
+          minWidth: 0
+        }}>Graduation Outcomes</h1>
       </div>
 
       {/* Main content */}
-      <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", gap: 24 }}>
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "300px 1fr", 
+        gap: 24,
+        maxWidth: "100%"
+      }}>
         {/* Left panel */}
         <div>
           {/* Description */}
@@ -234,6 +259,10 @@ export default function GraduationView() {
                       background: active ? "#0f172a" : "#121218",
                       color: "#fff",
                       cursor: "pointer",
+                      fontSize: "14px",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis"
                     }}
                   >
                     {label}
@@ -256,6 +285,7 @@ export default function GraduationView() {
             alignItems: "center",
             justifyContent: "center",
             overflow: "hidden",
+            minHeight: 400
           }}>
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
             {error && <div style={{ color: "salmon" }}>Failed to load: {error}</div>}
@@ -290,6 +320,77 @@ export default function GraduationView() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @media (max-width: 1024px) {
+          div[style*="grid-template-columns: 300px 1fr"] {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          
+          div[style*="grid-template-columns: 300px 1fr"] > div:first-child {
+            order: 2;
+          }
+          
+          div[style*="grid-template-columns: 300px 1fr"] > div:last-child {
+            order: 1;
+          }
+          
+          div[style*="height: 560px"] {
+            height: 400px !important;
+            margin-bottom: 16px !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          div[style*="padding: 24px"] {
+            padding: 16px !important;
+          }
+          
+          h1[style*="font-size: 28px"] {
+            font-size: 24px !important;
+          }
+          
+          div[style*="display: grid"] > div > div > div > div > div {
+            grid-template-columns: 1fr !important;
+          }
+          
+          div[style*="height: 560px"] {
+            height: 350px !important;
+            padding: 4px !important;
+          }
+
+          /* Reduce pie chart size by 15% on mobile */
+          div[style*="height: 560px"] .js-plotly-plot {
+            transform: scale(0.85) !important;
+            transform-origin: center center !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          div[style*="padding: 24px"] {
+            padding: 12px !important;
+          }
+          
+          h1[style*="font-size: 28px"] {
+            font-size: 20px !important;
+          }
+          
+          div[style*="height: 560px"] {
+            height: 300px !important;
+          }
+          
+          div[style*="grid-template-columns: 300px 1fr"] {
+            gap: 12px !important;
+          }
+
+          /* Reduce pie chart size by 15% on small mobile */
+          div[style*="height: 560px"] .js-plotly-plot {
+            transform: scale(0.85) !important;
+            transform-origin: center center !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }
