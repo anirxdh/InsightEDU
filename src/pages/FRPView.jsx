@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { THEME } from "../utils/theme"
+import { getAllRaceCodes } from "../utils/raceCodes"
 import frpDataRaw from "../data/final_agg_frp.json"
 
 // FRP categories as provided in the dataset
@@ -39,7 +40,7 @@ const CATEGORY_META = [
   { key: "Overall", label: "Overall (FRP distribution)", type: "donut" },
   { key: "Gender", label: "Gender (FRP % stack)", type: "stacked" },
   { key: "Grade group", label: "Grade Group (FRP % stack)", type: "stacked" },
-  { key: "Race", label: "Race (FRP % stack)", type: "stacked" },
+  { key: "Race", label: "Race (Code) (FRP % stack)", type: "stacked" },
   { key: "School Number", label: "School (FRP % stack)", type: "stacked" },
   { key: "Year", label: "Year (FRP % stack)", type: "stacked" },
   { key: "Chronic Absenteeism", label: "Chronic Absenteeism (FRP % stack)", type: "stacked" },
@@ -263,6 +264,20 @@ export default function FRPView() {
           }}>
             <div style={{ fontWeight: 600, marginBottom: 8 }}>Analysis</div>
             <p style={{ margin: 0, color: "#c9c9d1" }}>Coming soon: highlight groups with highest FRP share and notable differences by category.</p>
+            
+            {/* Race Code Legend */}
+            {category === "Race" && (
+              <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #2a2a32" }}>
+                <div style={{ fontWeight: 600, marginBottom: 8, color: "#D5D8EA" }}>Race Category Codes:</div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "4px", fontSize: "12px" }}>
+                  {getAllRaceCodes().map(({ code, description }) => (
+                    <div key={code} style={{ color: "#a1a1aa" }}>
+                      <span style={{ fontWeight: 600, color: "#fff" }}>{code}:</span> {description}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

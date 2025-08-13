@@ -61,45 +61,35 @@
   ],
   "federal_race_code": [
     {
-      "label": "A",
+      "label": "1",
+      "graduated": 0.748,
+      "not_graduated": 0.252,
+      "masked": false
+    },
+   
+    {
+      "label": "3",
       "graduated": 0.897,
       "not_graduated": 0.103,
       "masked": false
     },
     {
-      "label": "B",
+      "label": "4",
       "graduated": 0.821,
       "not_graduated": 0.179,
       "masked": false
     },
+    
     {
-      "label": "H",
-      "graduated": 0.748,
-      "not_graduated": 0.252,
-      "masked": false
-    },
-    {
-      "label": "I",
-      "graduated": 1.0,
-      "not_graduated": 0.0,
-      "masked": false
-    },
-    {
-      "label": "M",
-      "graduated": 0.826,
-      "not_graduated": 0.174,
-      "masked": false
-    },
-    {
-      "label": "P",
-      "graduated": 1.0,
-      "not_graduated": 0.0,
-      "masked": false
-    },
-    {
-      "label": "W",
+      "label": "6",
       "graduated": 0.921,
       "not_graduated": 0.079,
+      "masked": false
+    },
+    {
+      "label": "7",
+      "graduated": 0.826,
+      "not_graduated": 0.174,
       "masked": false
     }
   ],

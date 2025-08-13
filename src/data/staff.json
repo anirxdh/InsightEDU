@@ -33,32 +33,32 @@
   ],
   "race": [
     {
-      "label": "WHITE N/H",
+      "label": "6",
       "percent": 0.801,
       "count": 1401
     },
     {
-      "label": "BLACK/NH",
+      "label": "4",
       "percent": 0.103,
       "count": 180
     },
     {
-      "label": "ASIAN/PAC ISLND",
+      "label": "3",
       "percent": 0.047,
       "count": 82
     },
     {
-      "label": "HISPANIC",
+      "label": "1",
       "percent": 0.035,
       "count": 61
     },
     {
-      "label": "TWO OR MORE",
+      "label": "7",
       "percent": 0.009,
       "count": 15
     },
     {
-      "label": "AMER IND/ALASK",
+      "label": "2",
       "percent": 0.005,
       "count": 9
     }

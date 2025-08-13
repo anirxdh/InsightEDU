@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { CHART_COLORS, THEME } from "../utils/theme"
+import { getAllRaceCodes } from "../utils/raceCodes"
 import graduationData from "../data/graduationOutcomes.json"
 
 const COLORS = {
@@ -29,7 +30,7 @@ const CATEGORY_META = [
   { key: "overall", label: "Overall Graduation", type: "pie" },
   { key: "year", label: "Year (timeline)", type: "line" },
   { key: "gender", label: "Gender", type: "bars-grouped" },
-  { key: "federal_race_code", label: "Race", type: "bars-grouped" },
+  { key: "federal_race_code", label: "Race (Code)", type: "bars-grouped" },
   { key: "chronically_absent", label: "Chronically Absent", type: "bars-grouped" },
   { key: "frp_eligible_flag", label: "FRP Eligible", type: "bars-grouped" },
   { key: "english_learner_flag", label: "English Learner", type: "bars-grouped" },
@@ -317,6 +318,20 @@ export default function GraduationView() {
               {category === "year" && "Graduation trends over time show how rates have changed across different academic years."}
               {category !== "overall" && category !== "year" && "Grouped bars show graduation rates (blue) vs non-graduation rates (orange) for each category, allowing easy comparison of outcomes across different student groups."}
             </p>
+            
+            {/* Race Code Legend */}
+            {category === "federal_race_code" && (
+              <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #2a2a32" }}>
+                <div style={{ fontWeight: 600, marginBottom: 8, color: "#D5D8EA" }}>Race Category Codes:</div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "4px", fontSize: "12px" }}>
+                  {getAllRaceCodes().map(({ code, description }) => (
+                    <div key={code} style={{ color: "#a1a1aa" }}>
+                      <span style={{ fontWeight: 600, color: "#fff" }}>{code}:</span> {description}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

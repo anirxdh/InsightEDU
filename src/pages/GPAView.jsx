@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { CHART_COLORS, THEME } from "../utils/theme"
+import { getAllRaceCodes } from "../utils/raceCodes"
 import gpaDataRaw from "../data/final_agg_gpa.json"
 
 const CATEGORY_COLORS = [CHART_COLORS.primary, "#a78bfa", "#c4b5fd", "#581c87"]
@@ -27,7 +28,7 @@ const CATEGORY_META = [
   { key: "Year", label: "Year (GPA % stack)", type: "stacked" },
   { key: "Gender", label: "Gender (GPA % stack)", type: "stacked" },
   { key: "Grade", label: "Grade (GPA % stack)", type: "stacked" },
-  { key: "Race", label: "Race (GPA % stack)", type: "stacked" },
+  { key: "Race", label: "Race (Code) (GPA % stack)", type: "stacked" },
   { key: "Chronically Absent", label: "Chronically Absent (GPA % stack)", type: "stacked" },
 ]
 
@@ -255,6 +256,20 @@ export default function GPAView() {
             <p style={{ margin: 0, color: "#c9c9d1" }}>
               Coming soon: insights about GPA trends and distributions across different student groups.
             </p>
+            
+            {/* Race Code Legend */}
+            {category === "Race" && (
+              <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #2a2a32" }}>
+                <div style={{ fontWeight: 600, marginBottom: 8, color: "#D5D8EA" }}>Race Category Codes:</div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "4px", fontSize: "12px" }}>
+                  {getAllRaceCodes().map(({ code, description }) => (
+                    <div key={code} style={{ color: "#a1a1aa" }}>
+                      <span style={{ fontWeight: 600, color: "#fff" }}>{code}:</span> {description}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
