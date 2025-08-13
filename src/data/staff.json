@@ -4,45 +4,226 @@
     "note": "Staff demographics aggregated from 'final_agg - staff.csv'. Counts masked where 'small count'."
   },
   "overall": [
-    { "label": "0-5 years", "count": 748, "percent": 0.386 },
-    { "label": "6-10 years", "count": 423, "percent": 0.218 },
-    { "label": "11-15 years", "count": 237, "percent": 0.122 },
-    { "label": "16-20 years", "count": 532, "percent": 0.274 },
-    { "label": "21+ years", "count": null, "percent": 0.0, "masked": true }
+    {
+      "label": "0-5 years",
+      "percent": 0.386,
+      "count": 748
+    },
+    {
+      "label": "6-10 years",
+      "percent": 0.218,
+      "count": 423
+    },
+    {
+      "label": "11-15 years",
+      "percent": 0.122,
+      "count": 237
+    },
+    {
+      "label": "16-20 years",
+      "percent": 0.274,
+      "count": 532
+    },
+    {
+      "label": "21+ years",
+      "percent": 0.0,
+      "count": null,
+      "masked": true
+    }
   ],
   "race": [
-    { "label": "2", "count": null, "percent": 0.005, "masked": true },
-    { "label": "3", "count": 82, "percent": 0.04, "masked": true },
-    { "label": "4", "count": 180, "percent": 0.103, "masked": true },
-    { "label": "1", "count": 61, "percent": 0.035, "masked": true },
-    { "label": "7", "count": 15, "percent": 0.009, "masked": true },
-    { "label": "5", "count": null, "percent": 0.002, "masked": true },
-    { "label": "6", "count": 1401, "percent": 0.8, "masked": true }
+    {
+      "label": "WHITE N/H",
+      "percent": 0.801,
+      "count": 1401
+    },
+    {
+      "label": "BLACK/NH",
+      "percent": 0.103,
+      "count": 180
+    },
+    {
+      "label": "ASIAN/PAC ISLND",
+      "percent": 0.047,
+      "count": 82
+    },
+    {
+      "label": "HISPANIC",
+      "percent": 0.035,
+      "count": 61
+    },
+    {
+      "label": "TWO OR MORE",
+      "percent": 0.009,
+      "count": 15
+    },
+    {
+      "label": "AMER IND/ALASK",
+      "percent": 0.005,
+      "count": 9
+    }
   ],
   "gender": [
-    { "label": "Female", "count": 1275, "percent": 0.706 },
-    { "label": "Male", "count": 532, "percent": 0.294 }
+    {
+      "label": "Female",
+      "percent": 0.706,
+      "count": 1275
+    },
+    {
+      "label": "Male",
+      "percent": 0.294,
+      "count": 532
+    }
   ],
   "category": [
-    { "label": "Support Staff", "count": 591, "percent": 0.327 },
-    { "label": "Teaching Staff", "count": 502, "percent": 0.278 },
-    { "label": "Comm Ed/ Extracurricular", "count": 469, "percent": 0.26 },
-    { "label": "Other", "count": 157, "percent": 0.087 },
-    { "label": "Admin & Leadership", "count": 88, "percent": 0.049 }
+    {
+      "label": "Support Staff",
+      "percent": 0.327,
+      "count": 591
+    },
+    {
+      "label": "Teaching Staff",
+      "percent": 0.278,
+      "count": 502
+    },
+    {
+      "label": "Comm Ed/ Extracurricular",
+      "percent": 0.26,
+      "count": 469
+    },
+    {
+      "label": "Other",
+      "percent": 0.087,
+      "count": 157
+    },
+    {
+      "label": "Admin & Leadership",
+      "percent": 0.049,
+      "count": 88
+    }
   ],
   "year": [
-    { "label": "2019-20", "count": 2265, "percent": 0.188 },
-    { "label": "2020-21", "count": 2437, "percent": 0.203 },
-    { "label": "2021-22", "count": 2477, "percent": 0.206 },
-    { "label": "2022-23", "count": 2877, "percent": 0.239 },
-    { "label": "2023-24", "count": 1960, "percent": 0.163 }
+    {
+      "label": "2019",
+      "percent": 0.188,
+      "count": 2265
+    },
+    {
+      "label": "2020",
+      "percent": 0.203,
+      "count": 2437
+    },
+    {
+      "label": "2021",
+      "percent": 0.206,
+      "count": 2477
+    },
+    {
+      "label": "2022",
+      "percent": 0.239,
+      "count": 2877
+    },
+    {
+      "label": "2023",
+      "percent": 0.163,
+      "count": 1960
+    }
   ],
   "highest_degree": [
-    { "label": "Masters", "count": 543, "percent": 0.7192052980132451 },
-    { "label": "Bachelors", "count": 174, "percent": 0.2304635761589404 },
-    { "label": "Specialist", "count": 20, "percent": 0.026 },
-    { "label": "Doctorate", "count": 18, "percent": 0.023 }
+    {
+      "label": "MASTERS+40",
+      "percent": 0.253,
+      "count": 196
+    },
+    {
+      "label": "MASTERS",
+      "percent": 0.236,
+      "count": 183
+    },
+    {
+      "label": "BACHELORS",
+      "percent": 0.134,
+      "count": 104
+    },
+    {
+      "label": "MASTERS+20",
+      "percent": 0.065,
+      "count": 50
+    },
+    {
+      "label": "MASTERS +30",
+      "percent": 0.057,
+      "count": 44
+    },
+    {
+      "label": "MASTERS+10",
+      "percent": 0.056,
+      "count": 43
+    },
+    {
+      "label": "BACHELORS+40",
+      "percent": 0.039,
+      "count": 30
+    },
+    {
+      "label": "MASTERS +60",
+      "percent": 0.035,
+      "count": 27
+    },
+    {
+      "label": "BACHELORS+10",
+      "percent": 0.03,
+      "count": 23
+    },
+    {
+      "label": "SPECIALIST",
+      "percent": 0.026,
+      "count": 20
+    },
+    {
+      "label": "DOCTORATE",
+      "percent": 0.023,
+      "count": 18
+    },
+    {
+      "label": "BACHELORS +30",
+      "percent": 0.022,
+      "count": 17
+    },
+    {
+      "label": "BACHELORS+20",
+      "percent": 0.01,
+      "count": 8
+    },
+    {
+      "label": "BACHELORS +60",
+      "percent": 0.005,
+      "count": null,
+      "masked": true
+    },
+    {
+      "label": "MASTERS +45",
+      "percent": 0.004,
+      "count": null,
+      "masked": true
+    },
+    {
+      "label": "MASTERS +15",
+      "percent": 0.003,
+      "count": null,
+      "masked": true
+    },
+    {
+      "label": "BACHELORS +15",
+      "percent": 0.001,
+      "count": null,
+      "masked": true
+    },
+    {
+      "label": "BACHELORS +45",
+      "percent": 0.001,
+      "count": null,
+      "masked": true
+    }
   ]
 }
-
-
