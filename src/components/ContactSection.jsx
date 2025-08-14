@@ -44,7 +44,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="contact-section terminal">
+    <section className="contact-section terminal">
       <div className="terminal-header">
         <span className="dot red" />
         <span className="dot yellow" />

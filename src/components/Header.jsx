@@ -16,7 +16,7 @@ const Header = ({ scrollToSection }) => {
         <nav className="nav-links">
           <div className="desktop-nav">
             <button className="nav-btn" onClick={() => scrollToSection('home')}>Home</button>
-            <button className="nav-btn" onClick={() => scrollToSection('goal')}>Goal</button>
+            <button className="nav-btn" onClick={() => scrollToSection('why')}>Goal</button>
             <button className="nav-btn" onClick={() => scrollToSection('about')}>About</button>
             <button className="nav-btn" onClick={() => scrollToSection('contact')}>Contact</button>
           </div>
@@ -29,7 +29,7 @@ const Header = ({ scrollToSection }) => {
             {menuOpen && (
               <div className="mobile-dropdown">
                 <button className="nav-btn" onClick={() => handleNav('home')}>Home</button>
-                <button className="nav-btn" onClick={() => handleNav('goal')}>Goal</button>
+                <button className="nav-btn" onClick={() => handleNav('why')}>Goal</button>
                 <button className="nav-btn" onClick={() => handleNav('about')}>About</button>
                 <button className="nav-btn" onClick={() => handleNav('contact')}>Contact</button>
               </div>

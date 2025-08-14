@@ -11,8 +11,9 @@ import AttendanceView from './pages/AttendanceView'
 import DemographicsView from './pages/DemographicsView'
 import FRPView from './pages/FRPView'
 import GPAView from './pages/GPAView'
-import { CHART_COLORS, THEME } from './utils/theme'
+
 import StaffView from './pages/StaffView'
+import Chatbot from './components/Chatbot'
 
 
 
@@ -60,14 +61,19 @@ function AppContent() {
         </section>
         {location.pathname === '/' && (
           <>
-            <section id="about">
+            <section id="why">
               <WhySection />
+            </section>
+            <section id="about">
               <AboutSection />
             </section>
-            <ContactSection />
+            <section id="contact">
+              <ContactSection />
+            </section>
           </>
         )}
       </div>
+      <Chatbot />
     </>
   )
 }

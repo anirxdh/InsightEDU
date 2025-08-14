@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@langchain/community": "^0.3.50",
+    "@langchain/openai": "^0.6.7",
     "@react-three/drei": "^10.6.1",
     "@react-three/fiber": "^9.3.0",
+    "langchain": "^0.3.30",
     "plotly.js": "^3.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
