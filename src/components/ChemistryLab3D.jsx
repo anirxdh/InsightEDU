@@ -43,6 +43,7 @@ function ChemistryLabModel() {
 
 export default function ChemistryLab3D() {
 	const [isInteracting, setIsInteracting] = useState(false);
+	const [isReady, setIsReady] = useState(false);
 	const controlsRef = useRef();
 	const cameraRef = useRef();
 
@@ -66,13 +67,14 @@ export default function ChemistryLab3D() {
 			controlsRef.current.update();
 			// Save as the canonical reset state
 			controlsRef.current.saveState();
+			setIsReady(true);
 			return true;
 		};
-		// Try immediately, then retry shortly until ready
+		// Try immediately, then retry with shorter intervals
 		if (!init()) {
 			const id = setInterval(() => {
 				if (init()) clearInterval(id);
-			}, 50);
+			}, 10); // Faster retry interval
 			return () => clearInterval(id);
 		}
 	}, []);
@@ -83,7 +85,7 @@ export default function ChemistryLab3D() {
 			if (controlsRef.current && cameraRef.current) {
 				controlsRef.current.reset();
 			}
-		}, 100);
+		}, 50); // Faster timeout
 		return () => clearTimeout(timer);
 	}, []);
 
@@ -95,8 +97,9 @@ export default function ChemistryLab3D() {
 			}
 		};
 		
-		// Trigger resize after a short delay to ensure proper sizing
-		const timer = setTimeout(handleResize, 50);
+		// Trigger resize immediately and after a short delay to ensure proper sizing
+		handleResize(); // Immediate call
+		const timer = setTimeout(handleResize, 25); // Faster delay
 		window.addEventListener('resize', handleResize);
 		
 		return () => {
@@ -119,10 +122,12 @@ export default function ChemistryLab3D() {
 				gl={{ 
 					antialias: true,
 					alpha: true,
-					preserveDrawingBuffer: true
+					preserveDrawingBuffer: true,
+					powerPreference: "high-performance"
 				}}
-				onCreated={({ camera }) => {
+				onCreated={({ camera, gl }) => {
 					cameraRef.current = camera;
+					gl.setSize(gl.domElement.clientWidth, gl.domElement.clientHeight);
 				}}
 			>
 				{/* Lighting */}
