@@ -108,6 +108,7 @@ const Chatbot = () => {
           zIndex: 1000,
           transition: 'all 0.3s ease',
         }}
+        className="chat-icon"
         onMouseEnter={(e) => {
           e.target.style.transform = 'scale(1.1)';
           e.target.style.backgroundColor = '#374151';
@@ -148,6 +149,7 @@ const Chatbot = () => {
             zIndex: 1001,
             border: '1px solid #374151',
           }}
+          className="chat-window"
         >
           {/* Header */}
           <div
@@ -451,7 +453,7 @@ const Chatbot = () => {
         </div>
       )}
 
-      {/* CSS for loading animation */}
+      {/* CSS for loading animation and responsive design */}
       <style jsx>{`
         @keyframes bounce {
           0%, 80%, 100% {
@@ -459,6 +461,66 @@ const Chatbot = () => {
           }
           40% {
             transform: scale(1);
+          }
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+          .chat-icon {
+            bottom: 15px !important;
+            right: 15px !important;
+            width: 50px !important;
+            height: 50px !important;
+          }
+
+          .chat-window {
+            bottom: 80px !important;
+            right: 10px !important;
+            left: 10px !important;
+            width: auto !important;
+            height: 60vh !important;
+            max-height: 500px !important;
+            min-height: 400px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .chat-icon {
+            bottom: 10px !important;
+            right: 10px !important;
+            width: 45px !important;
+            height: 45px !important;
+          }
+
+          .chat-window {
+            bottom: 70px !important;
+            right: 5px !important;
+            left: 5px !important;
+            height: 70vh !important;
+            max-height: 450px !important;
+            min-height: 350px !important;
+            border-radius: 8px !important;
+          }
+
+          .chat-window > div:first-child {
+            padding: 12px !important;
+          }
+
+          .chat-window > div:first-child span {
+            font-size: 13px !important;
+          }
+
+          .chat-window > div:first-child button {
+            font-size: 11px !important;
+            padding: 3px 6px !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .chat-window {
+            height: 75vh !important;
+            max-height: 400px !important;
+            min-height: 300px !important;
           }
         }
       `}</style>
