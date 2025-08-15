@@ -35,6 +35,33 @@ const CATEGORY_META = [
   { key: "school_id", label: "School", type: "bars-single" },
 ]
 
+const ANALYSIS_SUMMARIES = [
+  {
+    "filter": "overall",
+    "summary": "Overall chronic absenteeism rate is 29.6% across 10,620 students."
+  },
+  {
+    "filter": "gender",
+    "summary": "Males have a slightly higher absenteeism rate (30.5%) than females (28.7%)."
+  },
+  {
+    "filter": "race",
+    "summary": "Race code 2 has the highest absenteeism rate at 56.6%, followed by race code 5 (48.9%) and race code 4 (41.1%). Race code 6 has the lowest at 21.1%."
+  },
+  {
+    "filter": "grade_group",
+    "summary": "High school students show the highest absenteeism rate at 39.5%, followed by Secondary at 28.7%. Elementary students have the lowest at 22.9%."
+  },
+  {
+    "filter": "school_id",
+    "summary": "School 23 has the highest absenteeism rate at 64.9%, followed by School 42 (57.7%) and School 2 has the lowest at 14.1%."
+  },
+  {
+    "filter": "trend",
+    "summary": "Absenteeism peaked in 2021-22 at 37.7%, dipped sharply in 2020-21 to 18.5%, and has since remained near 30%."
+  }
+]
+
 function makeChart(category, data) {
   const meta = CATEGORY_META.find((m) => m.key === category)
   if (!meta) return { traces: [], layout: {} }
@@ -229,8 +256,9 @@ export default function AttendanceView() {
           {/* Analysis box */}
           <div style={{ border: "1px solid #2a2a32", borderRadius: 16, padding: 16, background: "#16161a" }}>
             <div style={{ fontWeight: 600, marginBottom: 8 }}>Analysis</div>
-            <p style={{ margin: 0, color: "#c9c9d1" }}>
-              Coming soon: insights such as groups with highest chronic absenteeism and trend changes year over year.
+            <p style={{ margin: 0, color: "#c9c9d1", lineHeight: 1.6 }}>
+              {ANALYSIS_SUMMARIES.find(summary => summary.filter === category)?.summary || 
+                "This analysis shows chronic absenteeism patterns across different student groups, highlighting key trends and disparities in attendance rates."}
             </p>
             
             {/* Race Code Legend */}

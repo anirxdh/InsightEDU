@@ -28,6 +28,33 @@ const CATEGORY_META = [
   { key: "race", label: "Race (Code)", type: "bars-single" },
 ]
 
+const ANALYSIS_SUMMARIES = [
+  {
+    "filter": "overall",
+    "summary": "Most staff have fewer than 10 years of experience, with 38.6% in the 0–5 year range and 21.8% in the 6–10 year range. Only a small portion have over 20 years, with the 21+ category masked due to small counts."
+  },
+  {
+    "filter": "race",
+    "summary": "The majority of staff (80.1%) are from race code 6, followed by 10.3% in race code 4. All other racial groups are below 5% representation."
+  },
+  {
+    "filter": "gender",
+    "summary": "Staff are predominantly female (70.6%) compared to 29.4% male."
+  },
+  {
+    "filter": "category",
+    "summary": "Support Staff make up the largest category (32.7%), followed closely by Teaching Staff (27.8%) and Community Education/Extracurricular roles (26%). Admin & Leadership represents less than 5% of staff."
+  },
+  {
+    "filter": "year",
+    "summary": "Staff counts have generally increased over time, peaking in 2022 with 2,877 staff members before declining slightly in 2023."
+  },
+  {
+    "filter": "highest_degree",
+    "summary": "Master's degrees are the most common (70.9%), followed by Bachelor's degrees (24.2%), Specialist degrees (2.6%), and Doctorate degrees (2.3%). This shows a well-educated workforce with the vast majority holding advanced degrees."
+  }
+]
+
 function makeChart(category, data) {
   const meta = CATEGORY_META.find((m) => m.key === category)
   if (!meta) return { traces: [], layout: {} }
@@ -53,7 +80,41 @@ function makeChart(category, data) {
     }
   }
 
-  const rows = data[category] || []
+  let rows = data[category] || []
+  
+  // Special handling for highest_degree to group into 4 main categories
+  if (category === "highest_degree") {
+    const groupedData = {
+      "Master's": { percent: 0, count: 0 },
+      "Bachelor's": { percent: 0, count: 0 },
+      "Specialist": { percent: 0, count: 0 },
+      "Doctorate": { percent: 0, count: 0 }
+    }
+    
+    rows.forEach(row => {
+      const label = row.label.toLowerCase()
+      if (label.includes('masters') || label.includes('master')) {
+        groupedData["Master's"].percent += row.percent
+        groupedData["Master's"].count += row.count || 0
+      } else if (label.includes('bachelors') || label.includes('bachelor')) {
+        groupedData["Bachelor's"].percent += row.percent
+        groupedData["Bachelor's"].count += row.count || 0
+      } else if (label.includes('specialist')) {
+        groupedData["Specialist"].percent += row.percent
+        groupedData["Specialist"].count += row.count || 0
+      } else if (label.includes('doctorate') || label.includes('doctor')) {
+        groupedData["Doctorate"].percent += row.percent
+        groupedData["Doctorate"].count += row.count || 0
+      }
+    })
+    
+    rows = Object.entries(groupedData).map(([label, data]) => ({
+      label,
+      percent: data.percent,
+      count: data.count
+    }))
+  }
+  
   const x = rows.map((r) => r.label)
   // Masking in this dataset refers to counts, not percentages. Always show percent; annotate text when masked.
   const y = rows.map((r) => r.percent)
@@ -238,7 +299,10 @@ export default function StaffView() {
             background: "#16161a" 
           }}>
             <div style={{ fontWeight: 600, marginBottom: 8 }}>Analysis</div>
-            <p style={{ margin: 0, color: "#c9c9d1" }}>Coming soon: callouts for largest groups and experience shifts over years.</p>
+            <p style={{ margin: 0, color: "#c9c9d1", lineHeight: 1.6 }}>
+              {ANALYSIS_SUMMARIES.find(summary => summary.filter === category)?.summary || 
+                "This analysis shows staff composition and characteristics across different categories, highlighting key patterns in workforce demographics and qualifications."}
+            </p>
             
             {/* Race Code Legend */}
             {category === "race" && (

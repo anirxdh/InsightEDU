@@ -32,6 +32,33 @@ const CATEGORY_META = [
   { key: "Chronically Absent", label: "Chronically Absent (GPA % stack)", type: "stacked" },
 ]
 
+const ANALYSIS_SUMMARIES = [
+  {
+    "filter": "Overall",
+    "summary": "Across all students, most have high GPAs, with 61.8% in the 4–3 range and 29.8% in the 3–2 range. Only 8% are in the 2–1 range, and fewer than 1% have below 1 GPA."
+  },
+  {
+    "filter": "Chronically Absent",
+    "summary": "Students who are not chronically absent perform much better academically, with 74.4% having GPAs between 4–3, compared to only 35.6% of chronically absent students. Chronically absent students are far more likely to be in the lower GPA ranges."
+  },
+  {
+    "filter": "Gender",
+    "summary": "Female students outperform male students overall, with 72.5% of females in the 4–3 GPA range compared to 56.3% of males."
+  },
+  {
+    "filter": "Grade",
+    "summary": "GPA distribution is fairly consistent across grades 10–12, with about 60–63% of students in each grade having GPAs in the 4–3 range. Lower GPA rates increase slightly in higher grades."
+  },
+  {
+    "filter": "Race",
+    "summary": "Race groups show notable GPA disparities. For example, race code 6 has the highest share (78.4%) of students in the 4–3 GPA range, while race code 1 has less than half (44.3%) in this range and a higher proportion in lower GPAs."
+  },
+  {
+    "filter": "Year",
+    "summary": "From 2017 to 2021, the percentage of students in the top GPA band (4–3) increased from 57.3% to 66.1%, while the share in lower ranges steadily declined."
+  }
+]
+
 const GPA_BUCKET_ORDER = ["<1 gpa", "2-1 gpa", "3-2 gpa", "4-3 gpa"]
 
 function sortAndMap(items) {
@@ -260,8 +287,9 @@ export default function GPAView() {
           {/* Analysis box */}
           <div style={{ border: "1px solid #2a2a32", borderRadius: 16, padding: 16, background: "#16161a" }}>
             <div style={{ fontWeight: 600, marginBottom: 8 }}>Analysis</div>
-            <p style={{ margin: 0, color: "#c9c9d1" }}>
-              Coming soon: insights about GPA trends and distributions across different student groups.
+            <p style={{ margin: 0, color: "#c9c9d1", lineHeight: 1.6 }}>
+              {ANALYSIS_SUMMARIES.find(summary => summary.filter === category)?.summary || 
+                "This analysis shows GPA distribution patterns across different student groups, highlighting key trends in academic performance and achievement gaps."}
             </p>
             
             {/* Race Code Legend */}

@@ -77,9 +77,20 @@ export default function ChemistryLab3D() {
 		}
 	}, []);
 
+	// Additional effect to ensure camera is set correctly on component mount
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			if (controlsRef.current && cameraRef.current) {
+				controlsRef.current.reset();
+			}
+		}, 100);
+		return () => clearTimeout(timer);
+	}, []);
+
 	return (
 		<div style={{ width: '100%', height: '100%', background: 'transparent' }}>
 			<Canvas
+				key="chemistry-lab-canvas"
 				camera={{ 
 					position: [-6, 4, -6], // Original camera position
 					fov: 48, // Original FOV

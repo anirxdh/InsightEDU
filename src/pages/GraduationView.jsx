@@ -37,6 +37,41 @@ const CATEGORY_META = [
   { key: "special_education_flag", label: "Special Education", type: "bars-grouped" }
 ]
 
+const ANALYSIS_SUMMARIES = [
+  {
+    "filter": "overall",
+    "summary": "Overall, 87.6% of students graduated, while 12.4% did not. This indicates a generally high graduation rate across the district."
+  },
+  {
+    "filter": "chronically_absent",
+    "summary": "Students who were not chronically absent had a much higher graduation rate (94.1%) compared to those who were chronically absent (82.1%). Chronic absenteeism appears to significantly reduce graduation likelihood."
+  },
+  {
+    "filter": "english_learner_flag",
+    "summary": "Non-English learners graduated at a rate of 88.6%, whereas English learners graduated at a much lower rate of 74.3%, suggesting language proficiency plays a role in graduation outcomes."
+  },
+  {
+    "filter": "frp_eligible_flag",
+    "summary": "Students not eligible for free or reduced-price meals graduated at 93.9%, compared to 78.6% for FRP-eligible students. Economic disadvantage is linked to lower graduation rates."
+  },
+  {
+    "filter": "gender",
+    "summary": "Female students had a higher graduation rate (89.9%) than male students (85.4%), showing a modest gender gap."
+  },
+  {
+    "filter": "federal_race_code",
+    "summary": "Graduation rates varied by race: highest for code 6 (92.1%) and lowest for code 1 (74.8%). Codes 3, 4, and 7 had rates between 82–90%, indicating disparities among racial groups."
+  },
+  {
+    "filter": "special_education_flag",
+    "summary": "Students not in special education graduated at 90.9%, compared to only 67.6% for special education students. This highlights a large gap in outcomes for special education populations."
+  },
+  {
+    "filter": "year",
+    "summary": "Graduation rates fluctuated slightly over the years, peaking in 2019–20 (94.4%) and being lowest in 2021–22 (86.5%), suggesting some year-to-year variation possibly tied to external factors like COVID-19."
+  }
+]
+
 function makeChart(category, data) {
   const meta = CATEGORY_META.find((m) => m.key === category)
   if (!meta) return { traces: [], layout: {} }
@@ -313,10 +348,9 @@ export default function GraduationView() {
             background: "#16161a"
           }}>
             <div style={{ fontWeight: 600, marginBottom: 8 }}>Analysis</div>
-            <p style={{ margin: 0, color: "#c9c9d1" }}>
-              {category === "overall" && "Overall graduation rate shows the percentage of students who successfully graduated."}
-              {category === "year" && "Graduation trends over time show how rates have changed across different academic years."}
-              {category !== "overall" && category !== "year" && "Grouped bars show graduation rates (blue) vs non-graduation rates (orange) for each category, allowing easy comparison of outcomes across different student groups."}
+            <p style={{ margin: 0, color: "#c9c9d1", lineHeight: 1.6 }}>
+              {ANALYSIS_SUMMARIES.find(summary => summary.filter === category)?.summary || 
+                "This analysis shows graduation outcomes across different student groups, highlighting key patterns and disparities in educational success."}
             </p>
             
             {/* Race Code Legend */}

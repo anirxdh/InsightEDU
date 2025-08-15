@@ -38,6 +38,37 @@ const CATEGORY_META = [
   { key: "School Number", label: "School (stacked %)", type: "stacked" },
 ]
 
+const ANALYSIS_SUMMARIES = [
+  {
+    "filter": "Overall",
+    "summary": "Across all students, race code 6 represents the largest share at 38.8%, followed by race code 4 at 29.4% and race code 1 at 18.4%. Codes 3, 7, and 2 each make up less than 8% combined."
+  },
+  {
+    "filter": "Chronic Absenteeism",
+    "summary": "Among non-chronically absent students, race code 6 is the most common (44.6%) followed by race code 4 (25.5%). For chronically absent students, race code 4 dominates at 35.6% with race code 6 falling to 29.2%."
+  },
+  {
+    "filter": "FRP",
+    "summary": "In the Free category, race code 4 is highest at 48.5%, followed by code 1 (21.4%) and code 6 (16.6%). In Reduced, code 1 leads (34.1%), while in Standard, code 6 dominates (50.7%)."
+  },
+  {
+    "filter": "Gender",
+    "summary": "Both genders show similar patterns—race code 6 is most prevalent (37.1% for females, 40.2% for males), followed by code 4 (30.5% for females, 28.5% for males) and code 1 (~18% for both)."
+  },
+  {
+    "filter": "Grade Group",
+    "summary": "Across grade groups, race code 6 is consistently highest: 38.0% in Elementary, 40.4% in High School, and 35.6% in Secondary. Race code 4 remains second in all groups."
+  },
+  {
+    "filter": "School Number",
+    "summary": "Race distribution varies widely by school. For example, School 8 is heavily race code 6 (66.2%), while School 2 also leans heavily toward code 6 (60.6%). School 14 is more balanced between codes 4 (40.1%) and 6 (34.7%)."
+  },
+  {
+    "filter": "Year",
+    "summary": "Race code 6 remains the largest group across all years, ranging from 36.7% to 40.9%. Race code 4 consistently holds second place, between 27.3% and 30.9%."
+  }
+]
+
 function percentByCategory(items, categoryId) {
   const found = (items || []).find((x) => String(x.Category) === String(categoryId))
   return found ? Number(found.Percent) : 0
@@ -260,7 +291,10 @@ export default function DemographicsView() {
             background: "#16161a" 
           }}>
             <div style={{ fontWeight: 600, marginBottom: 8 }}>Analysis</div>
-            <p style={{ margin: 0, color: "#c9c9d1" }}>Coming soon: highlight groups with highest representation and year-over-year shifts.</p>
+            <p style={{ margin: 0, color: "#c9c9d1", lineHeight: 1.6 }}>
+              {ANALYSIS_SUMMARIES.find(summary => summary.filter === category)?.summary || 
+                "This analysis shows demographic distribution patterns across different student groups, highlighting population composition and representation trends."}
+            </p>
           </div>
         </div>
       </div>
