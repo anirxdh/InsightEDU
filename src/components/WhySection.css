@@ -33,6 +33,8 @@
   align-items: center;
   justify-content: center;
   min-height: 400px;
+  max-height: 400px;
+  height: 400px;
   overflow: hidden;
   position: relative;
 }

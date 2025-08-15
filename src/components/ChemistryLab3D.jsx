@@ -87,8 +87,26 @@ export default function ChemistryLab3D() {
 		return () => clearTimeout(timer);
 	}, []);
 
+	// Effect to handle resize on mount
+	useEffect(() => {
+		const handleResize = () => {
+			if (cameraRef.current) {
+				cameraRef.current.updateProjectionMatrix();
+			}
+		};
+		
+		// Trigger resize after a short delay to ensure proper sizing
+		const timer = setTimeout(handleResize, 50);
+		window.addEventListener('resize', handleResize);
+		
+		return () => {
+			clearTimeout(timer);
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
+
 	return (
-		<div style={{ width: '100%', height: '100%', background: 'transparent' }}>
+		<div style={{ width: '100%', height: '100%', background: 'transparent', minHeight: '300px', maxHeight: '400px' }}>
 			<Canvas
 				key="chemistry-lab-canvas"
 				camera={{ 
@@ -97,7 +115,7 @@ export default function ChemistryLab3D() {
 					near: 0.1,
 					far: 1000
 				}}
-				style={{ background: 'transparent' }}
+				style={{ background: 'transparent', width: '100%', height: '100%' }}
 				gl={{ 
 					antialias: true,
 					alpha: true,

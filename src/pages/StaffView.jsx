@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { THEME, CHART_COLORS } from "../utils/theme"
-import { getAllRaceCodes } from "../utils/raceCodes"
+
 import staffDataRaw from "../data/staff.json"
 
 const COLORS = { primary: CHART_COLORS.primary, secondary: CHART_COLORS.secondary }
@@ -304,19 +304,7 @@ export default function StaffView() {
                 "This analysis shows staff composition and characteristics across different categories, highlighting key patterns in workforce demographics and qualifications."}
             </p>
             
-            {/* Race Code Legend */}
-            {category === "race" && (
-              <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #2a2a32" }}>
-                <div style={{ fontWeight: 600, marginBottom: 8, color: "#D5D8EA" }}>Race Category Codes:</div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "4px", fontSize: "12px" }}>
-                  {getAllRaceCodes().map(({ code, description }) => (
-                    <div key={code} style={{ color: "#a1a1aa" }}>
-                      <span style={{ fontWeight: 600, color: "#fff" }}>{code}:</span> {description}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+
           </div>
         </div>
       </div>

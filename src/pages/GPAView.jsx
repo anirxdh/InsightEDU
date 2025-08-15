@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { CHART_COLORS, THEME } from "../utils/theme"
-import { getAllRaceCodes } from "../utils/raceCodes"
+
 import gpaDataRaw from "../data/final_agg_gpa.json"
 
 const CATEGORY_COLORS = [CHART_COLORS.primary, "#a78bfa", "#c4b5fd", "#581c87"]
@@ -292,19 +292,7 @@ export default function GPAView() {
                 "This analysis shows GPA distribution patterns across different student groups, highlighting key trends in academic performance and achievement gaps."}
             </p>
             
-            {/* Race Code Legend */}
-            {category === "Race" && (
-              <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #2a2a32" }}>
-                <div style={{ fontWeight: 600, marginBottom: 8, color: "#D5D8EA" }}>Race Category Codes:</div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "4px", fontSize: "12px" }}>
-                  {getAllRaceCodes().map(({ code, description }) => (
-                    <div key={code} style={{ color: "#a1a1aa" }}>
-                      <span style={{ fontWeight: 600, color: "#fff" }}>{code}:</span> {description}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+
           </div>
         </div>
       </div>

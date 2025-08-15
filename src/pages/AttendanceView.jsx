@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { CHART_COLORS, THEME } from "../utils/theme"
-import { getAllRaceCodes } from "../utils/raceCodes"
+
 import chronicData from "../data/chronicAbsenteeism.json"
 
 const COLORS = {
@@ -261,19 +261,7 @@ export default function AttendanceView() {
                 "This analysis shows chronic absenteeism patterns across different student groups, highlighting key trends and disparities in attendance rates."}
             </p>
             
-            {/* Race Code Legend */}
-            {category === "race" && (
-              <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #2a2a32" }}>
-                <div style={{ fontWeight: 600, marginBottom: 8, color: "#D5D8EA" }}>Race Category Codes:</div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "4px", fontSize: "12px" }}>
-                  {getAllRaceCodes().map(({ code, description }) => (
-                    <div key={code} style={{ color: "#a1a1aa" }}>
-                      <span style={{ fontWeight: 600, color: "#fff" }}>{code}:</span> {description}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+
           </div>
         </div>
       </div>
