@@ -2,6 +2,7 @@ import React from "react"
 import Plot from "react-plotly.js"
 import "./Dashboard.css"
 import { CHART_COLORS, THEME } from "../../utils/theme"
+import GraphError from "../GraphError"
 
 const COLORS = {
   primary: CHART_COLORS.primary,
@@ -30,6 +31,14 @@ function OverallDonut({ percent }) {
   const labels = ["Chronic Absentee", "Not Chronic"]
   const colors = [COLORS.primary, COLORS.secondary]
 
+  if (!percent || percent === undefined || percent === null) {
+    return (
+      <div className="chart-container">
+        <GraphError message="No data available for overall statistics" />
+      </div>
+    )
+  }
+
   return (
     <div className="chart-container">
       <Plot
@@ -55,6 +64,14 @@ function OverallDonut({ percent }) {
 }
 
 function CategoryBarsSingle({ title, rows }) {
+  if (!rows || rows.length === 0) {
+    return (
+      <div className="chart-container">
+        <GraphError message={`No data available for ${title}`} />
+      </div>
+    )
+  }
+
   const x = rows.map((r) => r.label)
   const y = rows.map((r) => r.percent)
   const text = rows.map((r) => (r.count != null ? `n=${r.count}` : ""))
@@ -91,6 +108,14 @@ function CategoryBarsSingle({ title, rows }) {
 }
 
 function TrendLine({ rows }) {
+  if (!rows || rows.length === 0) {
+    return (
+      <div className="chart-container">
+        <GraphError message="No trend data available" />
+      </div>
+    )
+  }
+
   const x = rows.map((r) => r.label)
   const y = rows.map((r) => r.percent)
 

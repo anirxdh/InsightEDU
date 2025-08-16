@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { THEME, CHART_COLORS } from "../utils/theme"
+import GraphError from "../components/GraphError"
 
 import staffDataRaw from "../data/staff.json"
 
@@ -280,8 +281,8 @@ export default function StaffView() {
             minHeight: 400
           }}>
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
-            {error && <div style={{ color: "salmon" }}>Failed to load: {error}</div>}
-            {!loading && !error && data && (
+            {error && <GraphError message={`Failed to load: ${error}`} />}
+            {!loading && !error && data && traces && traces.length > 0 && (
               <Plot 
                 data={traces} 
                 layout={{ ...BASE_LAYOUT, ...layout }} 
@@ -289,6 +290,9 @@ export default function StaffView() {
                 style={{ width: "100%", height: "100%" }} 
                 useResizeHandler 
               />
+            )}
+            {!loading && !error && (!data || !traces || traces.length === 0) && (
+              <GraphError message="No data available for this category" />
             )}
           </div>
 

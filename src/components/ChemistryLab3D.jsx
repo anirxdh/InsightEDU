@@ -1,174 +1,104 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { OrbitControls, Environment, useGLTF } from '@react-three/drei';
+import React, { useRef, useEffect, useState, Suspense } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { OrbitControls, Environment, useGLTF, Bounds, useBounds } from '@react-three/drei';
 import * as THREE from 'three';
 
-function ChemistryLabModel() {
-	const gltf = useGLTF('/models/chemistry_lab.gltf');
-	const modelRef = useRef();
+function useResizeObserver() {
+  const ref = useRef(null);
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  useEffect(() => {
+    if (!ref.current) return;
+    const el = ref.current;
+    const ro = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+      setSize({ width: Math.max(0, Math.floor(width)), height: Math.max(0, Math.floor(height)) });
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  return [ref, size];
+}
 
-	useFrame((state) => {
-		// Gentle anti-clockwise rotation animation with limited range
-		if (modelRef.current) {
-			const time = state.clock.elapsedTime * 0.2; // Slower rotation
-			const rotationRange = 0.3; // Limited rotation range (about 17 degrees each way)
-			modelRef.current.rotation.y = Math.sin(time) * rotationRange;
-		}
-	});
+function FitOnResize() {
+  const { camera, size } = useThree();
+  useEffect(() => {
+    if (size.width > 0 && size.height > 0) {
+      camera.aspect = size.width / size.height;
+      camera.updateProjectionMatrix();
+    }
+  }, [camera, size]);
+  return null;
+}
 
-	useEffect(() => {
-		if (gltf.scene) {
-			// Center the model
-			const box = new THREE.Box3().setFromObject(gltf.scene);
-			const center = box.getCenter(new THREE.Vector3());
-			gltf.scene.position.sub(center);
-			
-			// Scale the model to fit nicely
-			const size = box.getSize(new THREE.Vector3());
-			const maxDim = Math.max(size.x, size.y, size.z);
-			const scale = 1.8 / maxDim; // Original scale
-			gltf.scene.scale.setScalar(scale);
-		}
-	}, [gltf]);
+function Lab() {
+  const group = useRef();
+  const { scene } = useGLTF('/models/chemistry_lab.gltf');
+  const bounds = useBounds();
 
-	return (
-		<primitive 
-			ref={modelRef}
-			object={gltf.scene} 
-			position={[0, -1, 0]}
-		/>
-	);
+  // gentle idle rotation
+  useFrame((state) => {
+    if (group.current) {
+      const t = state.clock.getElapsedTime() * 0.2;
+      group.current.rotation.y = Math.sin(t) * 0.3;
+    }
+  });
+
+  // Frame the content ONCE when loaded, not every frame.
+  useEffect(() => {
+    if (!scene) return;
+    // defer a tick so the primitive is in the tree
+    requestAnimationFrame(() => {
+      bounds.refresh().clip().fit(); // one-time fit; no observe, so no jitter
+    });
+  }, [scene, bounds]);
+
+  return (
+    <group ref={group}>
+      <primitive object={scene} />
+    </group>
+  );
 }
 
 export default function ChemistryLab3D() {
-	const [isInteracting, setIsInteracting] = useState(false);
-	const [isReady, setIsReady] = useState(false);
-	const controlsRef = useRef();
-	const cameraRef = useRef();
+  const [containerRef, { width, height }] = useResizeObserver();
 
-	// Fixed initial camera state
-	const INITIAL_CAMERA = useRef({
-		position: new THREE.Vector3(-6, 4, -6),
-		target: new THREE.Vector3(0, 0, 0),
-		fov: 48,
-		distance: Math.sqrt(6 * 6 + 4 * 4 + 6 * 6),
-	});
+  return (
+    <div
+      ref={containerRef}
+      style={{ width: '100%', height: '100%', minHeight: 300, maxHeight: 400, background: 'transparent' }}
+    >
+      {width > 0 && height > 0 && (
+        <Canvas
+          camera={{ position: [-4, 3, -4], fov: 48, near: 0.1, far: 1000 }}
+          style={{ width, height, background: 'transparent' }}
+          gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+        >
+          <FitOnResize />
 
-	useEffect(() => {
-		// Initialize camera and controls to fixed state once on mount
-		const init = () => {
-			if (!controlsRef.current || !cameraRef.current) return false;
-			const cam = cameraRef.current;
-			cam.position.copy(INITIAL_CAMERA.current.position);
-			cam.fov = INITIAL_CAMERA.current.fov;
-			cam.updateProjectionMatrix();
-			controlsRef.current.target.copy(INITIAL_CAMERA.current.target);
-			controlsRef.current.update();
-			// Save as the canonical reset state
-			controlsRef.current.saveState();
-			setIsReady(true);
-			return true;
-		};
-		// Try immediately, then retry with shorter intervals
-		if (!init()) {
-			const id = setInterval(() => {
-				if (init()) clearInterval(id);
-			}, 10); // Faster retry interval
-			return () => clearInterval(id);
-		}
-	}, []);
+          <ambientLight intensity={0.4} />
+          <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
+          <pointLight position={[-10, -10, -10]} intensity={0.3} />
+          <Environment preset="city" />
 
-	// Additional effect to ensure camera is set correctly on component mount
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			if (controlsRef.current && cameraRef.current) {
-				controlsRef.current.reset();
-			}
-		}, 50); // Faster timeout
-		return () => clearTimeout(timer);
-	}, []);
+          <Suspense fallback={null}>
+            {/* No `observe` here to avoid re-fitting on rotation */}
+            <Bounds fit clip margin={1}>
+              <Lab />
+            </Bounds>
+          </Suspense>
 
-	// Effect to handle resize on mount
-	useEffect(() => {
-		const handleResize = () => {
-			if (cameraRef.current) {
-				cameraRef.current.updateProjectionMatrix();
-			}
-		};
-		
-		// Trigger resize immediately and after a short delay to ensure proper sizing
-		handleResize(); // Immediate call
-		const timer = setTimeout(handleResize, 25); // Faster delay
-		window.addEventListener('resize', handleResize);
-		
-		return () => {
-			clearTimeout(timer);
-			window.removeEventListener('resize', handleResize);
-		};
-	}, []);
-
-	return (
-		<div style={{ width: '100%', height: '100%', background: 'transparent', minHeight: '300px', maxHeight: '400px' }}>
-			<Canvas
-				key="chemistry-lab-canvas"
-				camera={{ 
-					position: [-6, 4, -6], // Original camera position
-					fov: 48, // Original FOV
-					near: 0.1,
-					far: 1000
-				}}
-				style={{ background: 'transparent', width: '100%', height: '100%' }}
-				gl={{ 
-					antialias: true,
-					alpha: true,
-					preserveDrawingBuffer: true,
-					powerPreference: "high-performance"
-				}}
-				onCreated={({ camera, gl }) => {
-					cameraRef.current = camera;
-					gl.setSize(gl.domElement.clientWidth, gl.domElement.clientHeight);
-				}}
-			>
-				{/* Lighting */}
-				<ambientLight intensity={0.4} />
-				<directionalLight 
-					position={[10, 10, 5]} 
-					intensity={1} 
-					castShadow
-					shadow-mapSize-width={2048}
-					shadow-mapSize-height={2048}
-				/>
-				<pointLight position={[-10, -10, -10]} intensity={0.3} />
-				
-				{/* Environment for better reflections */}
-				<Environment preset="city" />
-				
-				{/* 3D Model */}
-				<ChemistryLabModel />
-				
-				{/* Camera Controls */}
-				<OrbitControls
-					ref={controlsRef}
-					enablePan={false}
-					enableZoom={false} // Never allow zooming (prevents zooming out)
-					enableRotate={true}
-					minDistance={INITIAL_CAMERA.current.distance}
-					maxDistance={INITIAL_CAMERA.current.distance}
-					autoRotate={false}
-					onStart={() => setIsInteracting(true)}
-					onEnd={() => {
-						// On interaction end, snap back to the saved state to ensure angle/zoom are identical
-						if (controlsRef.current) {
-							controlsRef.current.reset();
-						}
-						setTimeout(() => setIsInteracting(false), 2000);
-					}}
-				/>
-			</Canvas>
-		</div>
-	);
+          <OrbitControls
+            enablePan={false}
+            enableZoom={false}
+            enableRotate
+            // small damping helps polish interaction without affecting idle stability
+            enableDamping
+            dampingFactor={0.08}
+          />
+        </Canvas>
+      )}
+    </div>
+  );
 }
 
-// Preload the model
 useGLTF.preload('/models/chemistry_lab.gltf');

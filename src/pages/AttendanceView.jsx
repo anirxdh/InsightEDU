@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { CHART_COLORS, THEME } from "../utils/theme"
+import GraphError from "../components/GraphError"
 
 import chronicData from "../data/chronicAbsenteeism.json"
 
@@ -247,9 +248,12 @@ export default function AttendanceView() {
             }}
           >
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
-            {error && <div style={{ color: "salmon" }}>Failed to load: {error}</div>}
-            {!loading && !error && data && (
+            {error && <GraphError message={`Failed to load: ${error}`} />}
+            {!loading && !error && data && traces && traces.length > 0 && (
               <Plot key={`attendance-${category}`} data={traces} layout={{ ...layout }} config={BASE_CONFIG} style={{ width: "100%", height: "100%", maxWidth: 1000 }} useResizeHandler />
+            )}
+            {!loading && !error && (!data || !traces || traces.length === 0) && (
+              <GraphError message="No data available for this category" />
             )}
           </div>
 

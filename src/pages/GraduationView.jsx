@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { CHART_COLORS, THEME } from "../utils/theme"
+import GraphError from "../components/GraphError"
 
 import graduationData from "../data/graduationOutcomes.json"
 
@@ -324,8 +325,8 @@ export default function GraduationView() {
             minHeight: 400
           }}>
             {loading && <div style={{ color: "#a1a1aa" }}>Loading chart…</div>}
-            {error && <div style={{ color: "salmon" }}>Failed to load: {error}</div>}
-            {!loading && !error && data && traces.length > 0 && (
+            {error && <GraphError message={`Failed to load: ${error}`} />}
+            {!loading && !error && data && traces && traces.length > 0 && (
               <Plot 
                 key={`graduation-${category}`}
                 data={traces} 
@@ -335,8 +336,8 @@ export default function GraduationView() {
                 useResizeHandler 
               />
             )}
-            {!loading && !error && data && traces.length === 0 && (
-              <div style={{ color: "#a1a1aa" }}>No data available for this category</div>
+            {!loading && !error && (!data || !traces || traces.length === 0) && (
+              <GraphError message="No data available for this category" />
             )}
           </div>
 
