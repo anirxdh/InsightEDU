@@ -186,7 +186,16 @@ class RagChat {
     }
 
     // Return the single best snippet to avoid noisy outputs
-    const answer = summarizeFromDoc(filtered[0]);
+    const best = filtered[0];
+    const answer = summarizeFromDoc(best);
+    // Update session based on the doc we actually surfaced
+    if (best && best.metadata) {
+      this.session = {
+        dataset: best.metadata.dataset || this.session.dataset,
+        breakdown: best.metadata.breakdown || this.session.breakdown,
+        label: best.metadata.label || null,
+      };
+    }
     this.addToMemory('assistant', answer);
     return answer;
   }
