@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { getAgent } from '../utils/agentSystem';
+import { getRagChat } from '../utils/ragChat';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,7 @@ const Chatbot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
-  const agent = getAgent();
+  const rag = getRagChat();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -46,8 +46,8 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      // Use the agent with memory to generate response
-      const response = await agent.generateResponse(inputValue);
+      // Use RAG retriever with short-term memory
+      const response = await rag.generateResponse(inputValue);
 
       const botMessage = {
         id: messages.length + 2,
@@ -169,7 +169,7 @@ const Chatbot = () => {
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               <button
                 onClick={() => {
-                  agent.clearMemory();
+                  rag.clearMemory();
                   setMessages([
                     {
                       id: 1,

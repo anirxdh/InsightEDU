@@ -7,9 +7,12 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "rag:ingest": "node ./scripts/ingestPinecone.mjs",
+    "rag:chat": "node ./scripts/chatRag.mjs"
   },
   "dependencies": {
+    "@pinecone-database/pinecone": "^4.0.0",
     "@langchain/community": "^0.3.50",
     "@langchain/openai": "^0.6.7",
     "@react-three/drei": "^10.6.1",
