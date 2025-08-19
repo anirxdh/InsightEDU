@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { CHART_COLORS, THEME } from "../utils/theme"
 import GraphError from "../components/GraphError"
+import { RACE_CODES } from "../utils/raceCodes"
 
 import graduationData from "../data/graduationOutcomes.json"
 
@@ -146,7 +147,12 @@ function makeChart(category, data) {
     return { traces: [], layout: { ...BASE_LAYOUT, title: "No data available" } }
   }
 
-  const x = rows.map((r) => r.label)
+  const x = rows.map((r) => {
+    if (category === "chronically_absent") return r.label === "0" ? "Not Chronically Absent" : r.label === "1" ? "Chronically Absent" : r.label
+    if (category === "gender") return r.label === "0" ? "Female" : r.label === "1" ? "Male" : r.label
+    if (category === "federal_race_code") return RACE_CODES[String(r.label)] || r.label
+    return r.label
+  })
   const yGrad = rows.map((r) => r.graduated)
   const yNotGrad = rows.map((r) => r.not_graduated)
   

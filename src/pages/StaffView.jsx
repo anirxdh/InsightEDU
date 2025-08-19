@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { THEME, CHART_COLORS } from "../utils/theme"
 import GraphError from "../components/GraphError"
+import { RACE_CODES } from "../utils/raceCodes"
 
 import staffDataRaw from "../data/staff.json"
 
@@ -116,7 +117,11 @@ function makeChart(category, data) {
     }))
   }
   
-  const x = rows.map((r) => r.label)
+  const x = rows.map((r) => {
+    if (category === "gender") return r.label === "0" ? "Female" : r.label === "1" ? "Male" : r.label
+    if (category === "race") return RACE_CODES[String(r.label)] || r.label
+    return r.label
+  })
   // Masking in this dataset refers to counts, not percentages. Always show percent; annotate text when masked.
   const y = rows.map((r) => r.percent)
   const labelText = rows.map((r) => `${Math.round((r.percent || 0) * 100)}%`)

@@ -3,6 +3,8 @@ import Plot from "react-plotly.js"
 import { CHART_COLORS, THEME } from "../utils/theme"
 import GraphError from "../components/GraphError"
 import demoDataRaw from "../data/final_agg_demo.json"
+import { RACE_CODES } from "../utils/raceCodes"
+import { SCHOOL_CODES } from "../utils/schoolCodes"
 
 const CATEGORY_COLORS = [
   "#c4b5fd", // 1
@@ -75,21 +77,28 @@ function percentByCategory(items, categoryId) {
   return found ? Number(found.Percent) : 0
 }
 
-function buildStackedFromGroupMap(groupMap) {
-  const groupNames = Object.keys(groupMap)
+function buildStackedFromGroupMap(groupMap, category) {
+  const rawGroupKeys = Object.keys(groupMap)
+  const groupNames = rawGroupKeys.map((g) => {
+    if (category === "School Number") return SCHOOL_CODES[String(g)] || `School ${g}`
+    return g
+  })
   const categoryIds = [1, 2, 3, 4, 5, 6, 7]
 
   const traces = categoryIds.map((catId, idx) => ({
     type: "bar",
-    name: `Cat ${catId}`,
+    name: RACE_CODES[String(catId)] || `Code ${catId}`,
     x: groupNames,
-    y: groupNames.map((g) => percentByCategory(groupMap[g], catId)),
-    customdata: groupNames.map((g) => {
-      const found = (groupMap[g] || []).find((x) => String(x.Category) === String(catId))
-      return found && found.Count && found.Count !== "small count" ? `n=${found.Count}` : ""
+    y: rawGroupKeys.map((gk) => percentByCategory(groupMap[gk], catId)),
+    customdata: rawGroupKeys.map((gk) => {
+      const found = (groupMap[gk] || []).find((x) => String(x.Category) === String(catId))
+      if (!found) return ""
+      if (found.Count && found.Count !== "small count") return `n=${found.Count}`
+      if (found.Count === "small count") return "n=too small"
+      return ""
     }),
     marker: { color: CATEGORY_COLORS[idx % CATEGORY_COLORS.length] },
-    hovertemplate: `<b>%{x}</b><br>Cat ${catId}: %{y:.1%}<br>%{customdata}<extra></extra>`,
+    hovertemplate: `<b>%{x}</b><br>${RACE_CODES[String(catId)] || `Code ${catId}`}: %{y:.1%}<br>%{customdata}<extra></extra>`,
   }))
 
   return { traces }
@@ -101,7 +110,7 @@ function makeChart(category, data) {
 
   if (meta.type === "donut") {
     const items = data[category] || []
-    const labels = items.map((i) => String(i.Category))
+    const labels = items.map((i) => RACE_CODES[String(i.Category)] || String(i.Category))
     const values = items.map((i) => Number(i.Percent))
     return {
       traces: [
@@ -114,9 +123,11 @@ function makeChart(category, data) {
           sort: false,
           direction: "clockwise",
           customdata: items.map((i) => {
-            return i.Count && i.Count !== "small count" ? `n=${i.Count}` : ""
+            if (i.Count && i.Count !== "small count") return `n=${i.Count}`
+            if (i.Count === "small count") return "n=too small"
+            return ""
           }),
-          hovertemplate: "Cat %{label}: %{percent:.1%}<br>%{customdata}<extra></extra>",
+          hovertemplate: `%{label}: %{percent:.1%}<br>%{customdata}<extra></extra>`,
         },
       ],
       layout: { ...BASE_LAYOUT, title: "Overall Demographic Distribution" },
@@ -125,7 +136,7 @@ function makeChart(category, data) {
 
   if (meta.type === "stacked") {
     const groupMap = data[category] || {}
-    const { traces } = buildStackedFromGroupMap(groupMap)
+    const { traces } = buildStackedFromGroupMap(groupMap, category)
 
     return {
       traces,

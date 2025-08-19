@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { CHART_COLORS, THEME } from "../utils/theme"
 import GraphError from "../components/GraphError"
+import { RACE_CODES } from "../utils/raceCodes"
+import { SCHOOL_CODES } from "../utils/schoolCodes"
 
 import chronicData from "../data/chronicAbsenteeism.json"
 
@@ -116,7 +118,12 @@ function makeChart(category, data) {
 
   // default: single-series bars using percent
   const rows = data[category] || []
-  const x = rows.map((r) => r.label)
+  const x = rows.map((r) => {
+    if (category === "gender") return r.label === "0" ? "Female" : r.label === "1" ? "Male" : r.label
+    if (category === "race") return RACE_CODES[String(r.label)] || r.label
+    if (category === "school_id") return SCHOOL_CODES[String(r.label)] || `School ${r.label}`
+    return r.label
+  })
   const y = rows.map((r) => r.percent)
   const labelText = rows.map((r) => `${Math.round((r.percent || 0) * 100)}%`)
   const hoverDetails = rows.map((r) => (r.count != null ? `n=${r.count}` : ""))
@@ -201,6 +208,21 @@ export default function AttendanceView() {
             <p style={{ margin: 0, lineHeight: 1.5, color: "#c9c9d1" }}>
               Chronic absenteeism analysis using data from <b>2019-20 to 2023-24</b> academic years. This dataset shows the percentage of students missing a substantial portion of school and helps identify attendance patterns to support early intervention strategies for improved student engagement and academic success.
             </p>
+            <div
+              style={{
+                marginTop: 10,
+                padding: "8px 10px",
+                borderRadius: 10,
+                background: "#241313",
+                border: "1px solid #7f1d1d",
+                color: "#fecaca",
+                fontSize: 13,
+              }}
+              role="note"
+              aria-live="polite"
+            >
+              <span style={{ fontWeight: 700, color: "#ef4444" }}>Data update needed:</span> The chronic absenteeism dataset is pending updates/corrections and may not reflect final values.
+            </div>
           </div>
 
           {/* Filter/Category panel */}

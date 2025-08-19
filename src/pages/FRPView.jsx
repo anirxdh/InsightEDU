@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useState } from "react"
 import Plot from "react-plotly.js"
 import { THEME } from "../utils/theme"
 import GraphError from "../components/GraphError"
+import { RACE_CODES } from "../utils/raceCodes"
+import { SCHOOL_CODES } from "../utils/schoolCodes"
 
 import frpDataRaw from "../data/final_agg_frp.json"
 
@@ -82,22 +84,40 @@ function labelFor(categoryCode) {
   return FRP_LABELS[categoryCode] || String(categoryCode)
 }
 
-function buildStackedFromGroupMap(groupMap) {
-  const groupNames = Object.keys(groupMap)
+function displayNameFor(category, key) {
+  if (category === "Chronic Absenteeism") {
+    if (String(key) === "0") return "Not Chronically Absent"
+    if (String(key) === "1") return "Chronically Absent"
+  }
+  if (category === "Race") {
+    return RACE_CODES[String(key)] || String(key)
+  }
+  if (category === "School Number") {
+    return SCHOOL_CODES[String(key)] || `School ${key}`
+  }
+  return String(key)
+}
+
+function buildStackedFromGroupMap(groupMap, category) {
+  const rawGroupKeys = Object.keys(groupMap)
+  const groupNames = rawGroupKeys.map((k) => displayNameFor(category, k))
   const categoryCodes = ["F", "R", "S", "H"]
 
   const traces = categoryCodes.map((code, idx) => ({
     type: "bar",
     name: labelFor(code),
     x: groupNames,
-    y: groupNames.map((g) => {
-      const found = (groupMap[g] || []).find((i) => i.Category === code)
+    y: rawGroupKeys.map((gk) => {
+      const found = (groupMap[gk] || []).find((i) => i.Category === code)
       return found ? Number(found.Percent) : 0
     }),
     marker: { color: CATEGORY_COLORS[idx % CATEGORY_COLORS.length] },
-    customdata: groupNames.map((g) => {
-      const found = (groupMap[g] || []).find((i) => i.Category === code)
-      return found && found.Count && found.Count !== "small count" ? `n=${found.Count}` : ""
+    customdata: rawGroupKeys.map((gk) => {
+      const found = (groupMap[gk] || []).find((i) => i.Category === code)
+      if (!found) return ""
+      if (found.Count && found.Count !== "small count") return `n=${found.Count}`
+      if (found.Count === "small count") return "n=too small"
+      return ""
     }),
     hovertemplate: `<b>%{x}</b><br>${labelFor(code)}: %{y:.1%}<br>%{customdata}<extra></extra>`,
   }))
@@ -135,11 +155,7 @@ function makeChart(category, data) {
 
   if (meta.type === "stacked") {
     const groupMap = data[category] || {}
-    const { traces } = buildStackedFromGroupMap(groupMap)
-    const groupNames = Object.keys(groupMap)
-    const countsByGroup = groupNames.map((g) =>
-      (groupMap[g] || []).reduce((sum, it) => sum + (Number(it.Count) || 0), 0)
-    )
+    const { traces } = buildStackedFromGroupMap(groupMap, category)
     return {
       traces,
       layout: {
@@ -148,9 +164,6 @@ function makeChart(category, data) {
         barmode: "stack",
         yaxis: { tickformat: ".0%", rangemode: "tozero" },
       },
-      // counts available per group in customdata on first trace for hover
-      // Note: Plotly doesn't support per-bar annotations easily across all traces; keep counts in hover for clarity
-      // We attach counts only to the first trace; hovertemplate already shows percent by segment
     }
   }
 
@@ -232,6 +245,21 @@ export default function FRPView() {
             <p style={{ margin: 0, lineHeight: 1.5, color: "#c9c9d1" }}>
               Free/Reduced Price (FRP) meal eligibility analysis using data from <b>2019-20 to 2023-24</b> academic years. This dataset examines student access to nutritional support programs, which serves as an important indicator of socioeconomic diversity and helps identify students who may need additional academic and social support services.
             </p>
+            <div 
+              style={{
+                marginTop: 10,
+                padding: "8px 10px",
+                borderRadius: 10,
+                background: "#241313",
+                border: "1px solid #7f1d1d",
+                color: "#fecaca",
+                fontSize: 13,
+              }}
+              role="note"
+              aria-live="polite"
+            >
+              <span style={{ fontWeight: 700, color: "#ef4444" }}>Data update needed:</span> The FRP dataset is pending updates/corrections and may not reflect final values.
+            </div>
           </div>
           <div style={{ 
             border: "1px solid #2a2a32", 

@@ -56,7 +56,7 @@ class RagChat {
     const s = String(q || '').toLowerCase();
     // dataset
     let dataset = null;
-    if (/(^|\b)(grad|graduation)/.test(s)) dataset = 'graduation';
+    if (/\bgraduation\b|\bgraduate(s)?\b/.test(s)) dataset = 'graduation';
     else if (/\bgpa\b|grade point average/.test(s)) dataset = 'gpa';
     else if (/demographic|demo\b/.test(s)) dataset = 'demographics';
     else if (/\bfrp\b|free|reduced/.test(s)) dataset = 'frp';
@@ -69,6 +69,9 @@ class RagChat {
     else if (/gender|male|female/.test(s)) breakdown = 'gender';
     else if (/year|\b20\d{2}/.test(s)) breakdown = 'year';
     else if (/chronically absent|not chronically absent|chronically_absent/.test(s)) breakdown = 'chronically_absent';
+    else if (/english\s*learner/.test(s)) breakdown = 'english_learner_flag';
+    else if (/special\s*education/.test(s)) breakdown = 'special_education_flag';
+    else if (/school\s*(id|number)/.test(s)) breakdown = 'school_id';
     else if (/frp/.test(s)) {
       if (dataset === 'graduation') breakdown = 'frp_eligible_flag';
       else if (dataset === 'demographics') breakdown = 'frp';
@@ -276,6 +279,13 @@ class RagChat {
     this.addToMemory('user', query);
     const parsed = this.parseQuery(query);
 
+    // If user asked generally "about ... data" but no dataset recognized, list datasets concisely
+    if (!parsed.dataset && /\b(tell me|about)\b.*\bdata\b/.test(query.toLowerCase())) {
+      const msg = this.listAllDatasetsNames();
+      this.addToMemory('assistant', msg);
+      return msg;
+    }
+
     // Project goal/meta
     if (this.isGoalQuery(query)) {
       const msg = SITE_META.goal;
@@ -337,6 +347,7 @@ class RagChat {
           // We only have overall-by-year; no per-label-by-year docs
           prefix = `Note: Year-wise data is available only at overall level for ${dataset}, not for ${this.session.breakdown} "${this.session.label}".\n`;
         }
+        // If a specific label (e.g., school id 41) is active but we lack per-label-year docs, show overall-by-year
         const ordered = [...yearDocs].sort((a,b) => String(a.metadata?.label).localeCompare(String(b.metadata?.label)));
         const answer = prefix + ordered.map(d => d.text || d.pageContent).join('\n');
         this.session = { dataset, breakdown: 'year', label: null };
@@ -378,7 +389,7 @@ class RagChat {
       }
     }
 
-    const results = keywordSearch(query, 3);
+    const results = keywordSearch(query, 5);
     // Constrain fallback results to the current or previous dataset if possible
     let filtered = results;
     const ds = parsed.dataset || this.session.dataset;

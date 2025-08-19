@@ -1,12 +1,12 @@
 // Race category code mappings
 export const RACE_CODES = {
-  "1": "Hispanic/Latino",
-  "2": "American Indian/Alaskan Native", 
+  "1": "Hispanic",
+  "2": "American Indian", 
   "3": "Asian",
-  "4": "African-American/Black",
-  "5": "Native Hawaiian/Other Pacific Islander",
-  "6": "Caucasian/White",
-  "7": "Two or more races"
+  "4": "Black",
+  "5": "Hawaiian",
+  "6": "White",
+  "7": "Two or more"
 };
 
 // Function to get race description from code

@@ -7,6 +7,7 @@ import demographicsData from "../data/final_agg_demo.json";
 import frpData from "../data/final_agg_frp.json";
 import staffData from "../data/staff.json";
 import attendanceData from "../data/chronicAbsenteeism.json";
+import { RACE_CODES } from "./raceCodes";
 
 const STORAGE_KEY = "rag_documents";
 
@@ -217,7 +218,12 @@ function makeGpaDocs() {
 
 // ---------- Demographics documents (race composition across breakdowns) ----------
 function formatRaceParts(rows) {
-  return rows.map((r) => `code ${r.Category}: ${safePercent(r.Percent)}${toCountOrNull(r.Count) != null ? ` (${toCountOrNull(r.Count)})` : ""}`);
+  return rows.map((r) => {
+    const name = RACE_CODES[String(r.Category)] || `code ${r.Category}`;
+    const n = toCountOrNull(r.Count);
+    const nStr = n != null ? ` (n=${n})` : " (n=too small)";
+    return `${name}: ${safePercent(r.Percent)}${nStr}`;
+  });
 }
 
 function makeDemographicsOverallDoc() {
@@ -275,7 +281,11 @@ function makeDemographicsDocs() {
 
 // ---------- FRP documents (F/R/S distribution across breakdowns) ----------
 function formatFrpParts(rows) {
-  return rows.map((r) => `${r.Category}: ${safePercent(r.Percent)}${toCountOrNull(r.Count) != null ? ` (${toCountOrNull(r.Count)})` : ""}`);
+  return rows.map((r) => {
+    const n = toCountOrNull(r.Count);
+    const nStr = n != null ? ` (n=${n})` : " (n=too small)";
+    return `${r.Category}: ${safePercent(r.Percent)}${nStr}`;
+  });
 }
 
 function makeFrpOverallDoc() {
@@ -503,7 +513,8 @@ function makeAttendanceOverallDoc() {
 function makeAttendanceByArrayDocs(arrKey, breakdown) {
   const rows = attendanceData[arrKey] || [];
   return rows.map((r) => {
-    const text = `Chronic absenteeism by ${breakdown.replace(/_/g, " ")}: ${r.label} — ${safePercent(r.percent)}${r.count != null ? ` (n=${r.count})` : ""}.`;
+    const nStr = r.count != null ? ` (n=${r.count})` : " (n=too small)";
+    const text = `Chronic absenteeism by ${breakdown.replace(/_/g, " ")}: ${r.label} — ${safePercent(r.percent)}${nStr}.`;
     return {
       id: `attendance:${breakdown}:${slug(r.label)}`,
       text,
@@ -516,7 +527,8 @@ function makeAttendanceByArrayDocs(arrKey, breakdown) {
 function makeAttendanceYearDocs() {
   const rows = attendanceData.trend || [];
   return rows.map((r) => {
-    const text = `Chronic absenteeism in ${r.label}: ${safePercent(r.percent)}${r.count != null ? ` (n=${r.count})` : ""}.`;
+    const nStr = r.count != null ? ` (n=${r.count})` : " (n=too small)";
+    const text = `Chronic absenteeism in ${r.label}: ${safePercent(r.percent)}${nStr}.`;
     return {
       id: `attendance:year:${slug(r.label)}`,
       text,

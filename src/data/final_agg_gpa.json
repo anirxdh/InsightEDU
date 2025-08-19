@@ -1,6 +1,6 @@
 {
   "Chronically Absent": {
-    "0": [
+    "Not chronically absent": [
       {
         "Category": "2-1 gpa",
         "Count": "174",
@@ -22,7 +22,7 @@
         "Percent": 0.0
       }
     ],
-    "1": [
+    "Chronically absent": [
       {
         "Category": "2-1 gpa",
         "Count": "466",
@@ -46,7 +46,7 @@
     ]
   },
   "Gender": {
-    "0": [
+    "Female": [
       {
         "Category": "2-1 gpa",
         "Count": "75",
@@ -68,7 +68,7 @@
         "Percent": 0.0
       }
     ],
-    "1": [
+    "Male": [
       {
         "Category": "2-1 gpa",
         "Count": "213",
