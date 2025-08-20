@@ -53,7 +53,7 @@ const ANALYSIS_SUMMARIES = [
   },
   {
     filter: "Race",
-    summary: "Race groups show notable GPA disparities. For example, race code 6 has the highest share (78.4%) of students in the 4–3 GPA range, while race code 1 has less than half (44.3%) in this range and a higher proportion in lower GPAs."
+    summary: `Race groups show notable GPA disparities. For example, ${RACE_CODES["6"]} has the highest share (78.4%) of students in the 4–3 GPA range, while ${RACE_CODES["1"]} has less than half (44.3%) in this range and a higher proportion in lower GPAs.`
   },
   {
     filter: "Year",

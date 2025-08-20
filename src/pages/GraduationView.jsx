@@ -41,36 +41,36 @@ const CATEGORY_META = [
 
 const ANALYSIS_SUMMARIES = [
   {
-    "filter": "overall",
-    "summary": "Overall, 87.6% of students graduated, while 12.4% did not. This indicates a generally high graduation rate across the district."
+    filter: "overall",
+    summary: "Overall, 87.6% of students graduated, while 12.4% did not. This indicates a generally high graduation rate across the district."
   },
   {
-    "filter": "chronically_absent",
-    "summary": "Students who were not chronically absent had a much higher graduation rate (94.1%) compared to those who were chronically absent (82.1%). Chronic absenteeism appears to significantly reduce graduation likelihood."
+    filter: "chronically_absent",
+    summary: "Students who were not chronically absent had a much higher graduation rate (94.1%) compared to those who were chronically absent (82.1%). Chronic absenteeism appears to significantly reduce graduation likelihood."
   },
   {
-    "filter": "english_learner_flag",
-    "summary": "Non-English learners graduated at a rate of 88.6%, whereas English learners graduated at a much lower rate of 74.3%, suggesting language proficiency plays a role in graduation outcomes."
+    filter: "english_learner_flag",
+    summary: "Non-English learners graduated at a rate of 88.6%, whereas English learners graduated at a much lower rate of 74.3%, suggesting language proficiency plays a role in graduation outcomes."
   },
   {
-    "filter": "frp_eligible_flag",
-    "summary": "Students not eligible for free or reduced-price meals graduated at 93.9%, compared to 78.6% for FRP-eligible students. Economic disadvantage is linked to lower graduation rates."
+    filter: "frp_eligible_flag",
+    summary: "Students not eligible for free or reduced-price meals graduated at 93.9%, compared to 78.6% for FRP-eligible students. Economic disadvantage is linked to lower graduation rates."
   },
   {
-    "filter": "gender",
-    "summary": "Female students had a higher graduation rate (89.9%) than male students (85.4%), showing a modest gender gap."
+    filter: "gender",
+    summary: "Female students had a higher graduation rate (89.9%) than male students (85.4%), showing a modest gender gap."
   },
   {
-    "filter": "federal_race_code",
-    "summary": "Graduation rates varied by race: highest for code 6 (92.1%) and lowest for code 1 (74.8%). Codes 3, 4, and 7 had rates between 82–90%, indicating disparities among racial groups."
+    filter: "federal_race_code",
+    summary: `Graduation rates varied by race: highest for ${RACE_CODES["6"]} (92.1%) and lowest for ${RACE_CODES["1"]} (74.8%). ${RACE_CODES["3"]}, ${RACE_CODES["4"]}, and ${RACE_CODES["7"]} had rates between 82–90%, indicating disparities among racial groups.`
   },
   {
-    "filter": "special_education_flag",
-    "summary": "Students not in special education graduated at 90.9%, compared to only 67.6% for special education students. This highlights a large gap in outcomes for special education populations."
+    filter: "special_education_flag",
+    summary: "Students not in special education graduated at 90.9%, compared to only 67.6% for special education students. This highlights a large gap in outcomes for special education populations."
   },
   {
-    "filter": "year",
-    "summary": "Graduation rates fluctuated slightly over the years, peaking in 2019–20 (94.4%) and being lowest in 2021–22 (86.5%), suggesting some year-to-year variation possibly tied to external factors like COVID-19."
+    filter: "year",
+    summary: "Graduation rates fluctuated slightly over the years, peaking in 2019–20 (94.4%) and being lowest in 2021–22 (86.5%), suggesting some year-to-year variation possibly tied to external factors like COVID-19."
   }
 ]
 

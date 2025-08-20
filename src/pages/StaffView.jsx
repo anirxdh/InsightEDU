@@ -37,7 +37,7 @@ const ANALYSIS_SUMMARIES = [
   },
   {
     "filter": "race",
-    "summary": "The majority of staff (80.1%) are from race code 6, followed by 10.3% in race code 4. All other racial groups are below 5% representation."
+    "summary": `The majority of staff (80.1%) are ${RACE_CODES["6"]}, followed by 10.3% ${RACE_CODES["4"]}. All other racial groups are below 5% representation.`
   },
   {
     "filter": "gender",

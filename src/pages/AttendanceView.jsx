@@ -40,28 +40,28 @@ const CATEGORY_META = [
 
 const ANALYSIS_SUMMARIES = [
   {
-    "filter": "overall",
-    "summary": "Overall chronic absenteeism rate is 29.6% across 10,620 students."
+    filter: "overall",
+    summary: "Overall chronic absenteeism rate is 29.6% across 10,620 students."
   },
   {
-    "filter": "gender",
-    "summary": "Males have a slightly higher absenteeism rate (30.5%) than females (28.7%)."
+    filter: "gender",
+    summary: "Males have a slightly higher absenteeism rate (30.5%) than females (28.7%)."
   },
   {
-    "filter": "race",
-    "summary": "Race code 2 has the highest absenteeism rate at 56.6%, followed by race code 5 (48.9%) and race code 4 (41.1%). Race code 6 has the lowest at 21.1%."
+    filter: "race",
+    summary: `${RACE_CODES["2"]} has the highest absenteeism rate at 56.6%, followed by ${RACE_CODES["5"]} (48.9%) and ${RACE_CODES["4"]} (41.1%). ${RACE_CODES["6"]} has the lowest at 21.1%.`
   },
   {
-    "filter": "grade_group",
-    "summary": "High school students show the highest absenteeism rate at 39.5%, followed by Secondary at 28.7%. Elementary students have the lowest at 22.9%."
+    filter: "grade_group",
+    summary: "High school students show the highest absenteeism rate at 39.5%, followed by Secondary at 28.7%. Elementary students have the lowest at 22.9%."
   },
   {
-    "filter": "school_id",
-    "summary": "School 23 has the highest absenteeism rate at 64.9%, followed by School 42 (57.7%) and School 2 has the lowest at 14.1%."
+    filter: "school_id",
+    summary: `${SCHOOL_CODES["23"]} has the highest absenteeism rate at 64.9%, followed by ${SCHOOL_CODES["42"]} (57.7%) and ${SCHOOL_CODES["2"]} has the lowest at 14.1%.`
   },
   {
-    "filter": "trend",
-    "summary": "Absenteeism peaked in 2021-22 at 37.7%, dipped sharply in 2020-21 to 18.5%, and has since remained near 30%."
+    filter: "trend",
+    summary: "Absenteeism peaked in 2021-22 at 37.7%, dipped sharply in 2020-21 to 18.5%, and has since remained near 30%."
   }
 ]
 

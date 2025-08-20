@@ -51,32 +51,32 @@ const CATEGORY_META = [
 
 const ANALYSIS_SUMMARIES = [
   {
-    "filter": "Overall",
-    "summary": "Across all students, 61.8% are in the Free category (F), 19.8% are in Reduced (R), and 18.4% are in Standard (S). This indicates that a majority of students qualify for free meal programs."
+    filter: "Overall",
+    summary: "Across all students, 61.8% are in the Free category (F), 19.8% are in Reduced (R), and 18.4% are in Standard (S). This indicates that a majority of students qualify for free meal programs."
   },
   {
-    "filter": "Chronic Absenteeism",
-    "summary": "Non-chronically absent students have a lower share of Free category eligibility (56.8%) compared to chronically absent students (66.2%). Chronically absent students are also less likely to be in the Standard category."
+    filter: "Chronic Absenteeism",
+    summary: "Non-chronically absent students have a lower share of Free category eligibility (56.8%) compared to chronically absent students (66.2%). Chronically absent students are also less likely to be in the Standard category."
   },
   {
-    "filter": "Gender",
-    "summary": "Both genders have similar FRP distributions, with females at 61.1% Free and males at 60.5% Free. Reduced and Standard rates are also closely aligned between genders."
+    filter: "Gender",
+    summary: "Both genders have similar FRP distributions, with females at 61.1% Free and males at 60.5% Free. Reduced and Standard rates are also closely aligned between genders."
   },
   {
-    "filter": "Grade group",
-    "summary": "Elementary students have the highest Free eligibility rate (68.2%), while high school students have the lowest (55.5%). Secondary grades fall in between, and the small 'Unknown' group sits at 63.1% Free."
+    filter: "Grade group",
+    summary: "Elementary students have the highest Free eligibility rate (68.2%), while high school students have the lowest (55.5%). Secondary grades fall in between, and the small 'Unknown' group sits at 63.1% Free."
   },
   {
-    "filter": "Race",
-    "summary": "Race groups show wide disparities. Race code 4 has the highest Free rate at 74.1%, while race code 6 has the lowest at 43.5% and a high Standard share (35.8%). Race code 1 also shows a relatively low Free rate at 51.5%."
+    filter: "Race",
+    summary: `Race groups show wide disparities. ${RACE_CODES["4"]} has the highest Free rate at 74.1%, while ${RACE_CODES["6"]} has the lowest at 43.5% and a high Standard share (35.8%). ${RACE_CODES["1"]} also shows a relatively low Free rate at 51.5%.`
   },
   {
-    "filter": "School Number",
-    "summary": "School 41 has the highest Free eligibility (84%) followed by School 42 (80.7%). Schools 8 and 6 have relatively lower Free rates at 54.7% and 67%, respectively, with higher Standard proportions."
+    filter: "School Number",
+    summary: `${SCHOOL_CODES["41"]} has the highest Free eligibility (84%) followed by ${SCHOOL_CODES["42"]} (80.7%). ${SCHOOL_CODES["8"]} and ${SCHOOL_CODES["6"]} have relatively lower Free rates at 54.7% and 67%, respectively, with higher Standard proportions.`
   },
   {
-    "filter": "Year",
-    "summary": "Free eligibility has risen sharply over time, from 49.7% in 2019–20 to 79.5% in 2023–24, with corresponding drops in Reduced and Standard categories."
+    filter: "Year",
+    summary: "Free eligibility has risen sharply over time, from 49.7% in 2019–20 to 79.5% in 2023–24, with corresponding drops in Reduced and Standard categories."
   }
 ]
 
